@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -57,10 +57,12 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Welcome to your Jupyter Book" href="intro.html" />
+    <link rel="prev" title="A manual for UAV operations in Agriculture" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -171,12 +173,14 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    A manual for UAV operations in Agriculture
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Introduction</a></li>
+
+
 
 
 
@@ -386,11 +390,10 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-management">3. Data management</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-piepleines">4. Data processing piepleines</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-files">4.1. Reading files</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-digital-numbers-to-radiance">Converting Digital numbers to Radiance</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-piepleines">4. Data processing piepleines</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-digital-numbers-to-radiance">4.1. Converting Digital numbers to Radiance</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#radiance-to-reflectance">4.2. Radiance to Reflectance</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-vegetation-indices">4.3. Deriving vegetation indices</a></li>
 </ul>
 
             </nav>
@@ -412,9 +415,12 @@ document.write(`
 <h1>2. Pre planning<a class="headerlink" href="#pre-planning" title="Link to this heading">#</a></h1>
 <section id="flight-planning">
 <h2>2.1. Flight planning<a class="headerlink" href="#flight-planning" title="Link to this heading">#</a></h2>
-<p>To carry successful drone surveys, a strategic flight planning is required. Coordinate with the project representative to establish suitable flight parameters, including spatial resolution, date, and additional ancillary measurements.</p>
-<p>List the equipment required for the survey.</p>
-<p>Select clearly identifiable ground control point (GCP) locations within the survey area, essential for referencing UAV products.</p>
+<ul class="simple">
+<li><p>To carry successful drone surveys, a strategic flight planning is required using a standard flight planning software. Coordinate with the project representative to establish suitable flight parameters, including spatial resolution, date, and additional ancillary measurements.</p></li>
+<li><p>Ensure the survey area is not within classfied airspace.</p></li>
+<li><p>List the equipment required for the survey.</p></li>
+<li><p>Select clearly identifiable ground control point (GCP) locations within the survey area, essential for referencing UAV products.</p></li>
+</ul>
 </section>
 <section id="weather-forecasting">
 <h2>2.2. Weather forecasting<a class="headerlink" href="#weather-forecasting" title="Link to this heading">#</a></h2>
@@ -448,11 +454,10 @@ Increasing availability atmosphere data from multiple satellites enables to pred
 <h2>2.5. Ancillary measurements to support UAV acquisitions.<a class="headerlink" href="#ancillary-measurements-to-support-uav-acquisitions" title="Link to this heading">#</a></h2>
 <p>Calculating accurate surface reflectance values are essential in various applications and to synergies with other data. To support this, additional measurements can be conducted.</p>
 <p><strong>Field spectroradiometer</strong></p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Simultaneously with the drone flight, ground spectral measurements can be acquired using a spectroradiometer to align with drone spectral data. 
-
-Downwelling solar radiation can be captured with a spectroradiometer, utilizing a sensor fiber attached to a cosine receptor and positioned upward with a tripod. 
-</pre></div>
-</div>
+<ul class="simple">
+<li><p>Simultaneously with the drone flight, ground spectral measurements can be acquired using a spectroradiometer to align with drone spectral data.</p></li>
+<li><p>Downwelling solar radiation can be captured with a spectroradiometer, utilizing a sensor fiber attached to a cosine receptor and positioned upward with a tripod.</p></li>
+</ul>
 <p><strong>Sun photometer</strong> for measuring aerosol optical thickness.</p>
 </section>
 </section>
@@ -463,63 +468,103 @@ Downwelling solar radiation can be captured with a spectroradiometer, utilizing 
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="data-processing-piepleines">
 <h1>4. Data processing piepleines<a class="headerlink" href="#data-processing-piepleines" title="Link to this heading">#</a></h1>
-<section id="reading-files">
-<h2>4.1. Reading files<a class="headerlink" href="#reading-files" title="Link to this heading">#</a></h2>
-<p>Raw multispectral images (Digital Numbers) can be read using the following code:</p>
+<p>The radiometric response of optical sensors/ remote sensing imagery play critical role in obtaining quantitative spectral infromation. Typically, the data from the spectral sensors can be delivered as digital numbers, radiance, and reflectance.</p>
+<ul class="simple">
+<li><p>Digital numbers(DN) The amount of reflected light energy measured by the sensor recorded in the form of a binary integers which is not considered as qunatitative value thus not scientifc value. The range of binary integers depend on the radiometric resolution of the sensor. For example A sensor with 8 bits (rediometric resolution) records the data from 0 to 255, while 16 bits sensor records values from 0 to 65536.
+Radiometric resolution indciates the sensor sensitivity to detect minor energy differences. High resolution sensors has higher sensitivity.</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="converting-digital-numbers-to-radiance">
+<h1>4.1. Converting Digital numbers to Radiance<a class="headerlink" href="#converting-digital-numbers-to-radiance" title="Link to this heading">#</a></h1>
+<p>Radiance The DN converted to radiance using the a gain and offset values per each band, this process also called as radiometric calibration. The gain and offset values generally supplied from teh sensor manufactrer, if not the values can be retrieved using an integrating sphere. The radaince units are watts/m2 steradian nm.</p>
+<div class="math notranslate nohighlight">
+\[
+L_{band} = DN * Gain_{band} + Offset_{band}
+\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p>L_band = spectral radaince c(watts/(m2*steradian nm)</p></li>
+<li><p>DN = Digital numbers</p></li>
+<li><p>Gain =  Slope of the spectral band</p></li>
+<li><p>Offset = Intercept of the spectral band</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="radiance-to-reflectance">
+<h1>4.2. Radiance to Reflectance<a class="headerlink" href="#radiance-to-reflectance" title="Link to this heading">#</a></h1>
+<p>The portional of the light reflected from the object to the sensors. The reflectance measured in the range of 0-100% which depend on the properties of the reflected surface. Since the radiance values infleunced by various components (atmospheric and aerosol profile, and geometric factors) their interactions with radition, conversion into surface relfectance is essential to retrive phenological infromation.
+Generally three methods are followed these effects.</p>
+<ul class="simple">
+<li><p>Empirical Line</p></li>
+<li><p>Atmospheric Radiative transfer model (RTM)</p></li>
+<li><p>Hybrid method</p></li>
+</ul>
+<p>Empirical appraoches are widely used because of ease in implementation and repeatable under constant illumination conditions based on linear regression between reference panels and drone radiance values.
+Reading the raw multispectral images from the drone and and calibrating them into reflectance maps and stitiching the phtos can be done using different photorammetry softwares (Pix4D, Agrisoft, ArcGIS Drone2map).
+In case of multispectral images stadard reference panels (white and dark) are used to determine the scale factor which later applied over the image to convert into reflectance cube. The above softwares automatically extract reference panel information from by finding the QR code within an image.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="deriving-vegetation-indices">
+<h1>4.3. Deriving vegetation indices<a class="headerlink" href="#deriving-vegetation-indices" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">cv2</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">rasterio</span> <span class="k">as</span> <span class="nn">rio</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">rasterio</span>
 
-
-<span class="c1"># Read Multispectral/hyperspectral data</span>
-<span class="n">multi</span> <span class="o">=</span> <span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;/example.tif&#39;</span><span class="p">)</span>
-<span class="n">multi_array</span> <span class="o">=</span> <span class="n">multi</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">image_array</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;data/Multispec_30m.tif&#39;</span><span class="p">)</span>
+<span class="n">image_array</span><span class="o">.</span><span class="n">meta</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">cv2</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">os</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;cv2&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;driver&#39;: &#39;GTiff&#39;,
+ &#39;dtype&#39;: &#39;float32&#39;,
+ &#39;nodata&#39;: -32767.0,
+ &#39;width&#39;: 3529,
+ &#39;height&#39;: 3432,
+ &#39;count&#39;: 6,
+ &#39;crs&#39;: CRS.from_epsg(7853),
+ &#39;transform&#39;: Affine(0.020399847655346234, 0.0, 433027.87620212696,
+        0.0, -0.020401199596840672, 6378518.849946602)}
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="converting-digital-numbers-to-radiance">
-<h1>Converting Digital numbers to Radiance<a class="headerlink" href="#converting-digital-numbers-to-radiance" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fixing random state for reproducibility</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">19680801</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Spectral Bands</span>
 
-<span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
-<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span>
-<span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.prop_cycle&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cycler</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)))</span>
+<span class="n">green</span> <span class="o">=</span> <span class="n">image_array</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">blue</span> <span class="o">=</span> <span class="n">image_array</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">red</span> <span class="o">=</span> <span class="n">image_array</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">rededge</span> <span class="o">=</span> <span class="n">image_array</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">nir</span> <span class="o">=</span> <span class="n">image_array</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">panchromatic</span> <span class="o">=</span> <span class="n">image_array</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
+<span class="c1">#NDVI - Normalized Vegetation Index</span>
+<span class="n">NDVI</span> <span class="o">=</span> <span class="p">(</span><span class="n">nir</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">-</span> <span class="n">red</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">nir</span> <span class="o">+</span> <span class="n">red</span><span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">matplotlib.lines</span> <span class="kn">import</span> <span class="n">Line2D</span>
-<span class="n">custom_lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="mf">0.</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
-                <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="mf">.5</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
-                <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="mf">1.</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">)]</span>
+<span class="c1">#RVI - Simple Ratio Vegetation Index</span>
+<span class="n">RVI</span> <span class="o">=</span> <span class="n">nir</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">/</span><span class="n">red</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">lines</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">custom_lines</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Cold&#39;</span><span class="p">,</span> <span class="s1">&#39;Medium&#39;</span><span class="p">,</span> <span class="s1">&#39;Hot&#39;</span><span class="p">]);</span>
+<span class="c1">#SAVI - Soil Adjusted Vegetation Index</span>
+<span class="n">L</span><span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">SAVI</span> <span class="o">=</span> <span class="p">(</span><span class="n">nir</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">-</span> <span class="n">red</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">nir</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">+</span> <span class="n">red</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">+</span> <span class="n">L</span><span class="p">)</span>
+
+<span class="c1"># MSAVI2 - Modified Secondary Soil Adjusted Vegetation Index</span>
+
+<span class="n">MSAVI2</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">nir</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">nir</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">8</span><span class="o">*</span><span class="p">(</span><span class="n">nir</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">-</span> <span class="n">red</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)))</span>
+                                                               
+<span class="c1"># ARVI - Atmospheric Resistant Vegetation Index</span>
+<span class="n">ARVI</span> <span class="o">=</span> <span class="p">(</span><span class="n">nir</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">+</span> <span class="n">blue</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">nir</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">-</span> <span class="n">blue</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_7508\866925832.py:22: RuntimeWarning: invalid value encountered in sqrt
+  MSAVI2 = 0.5 * (2 * nir.astype(float) + 1 - np.sqrt(2 * nir.astype(float) + 1) * 2 - 8*(nir.astype(float) - red.astype(float)))
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_7508\866925832.py:25: RuntimeWarning: divide by zero encountered in divide
+  ARVI = (nir.astype(float) + blue.astype(float))/(nir.astype(float) - blue.astype(float))
 </pre></div>
 </div>
 </div>
@@ -564,7 +609,7 @@ with your book. For more information about this, see <a class="reference externa
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Welcome to your Jupyter Book</p>
+        <p class="prev-next-title">A manual for UAV operations in Agriculture</p>
       </div>
     </a>
 </div>
@@ -593,11 +638,10 @@ with your book. For more information about this, see <a class="reference externa
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-management">3. Data management</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-piepleines">4. Data processing piepleines</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-files">4.1. Reading files</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-digital-numbers-to-radiance">Converting Digital numbers to Radiance</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-piepleines">4. Data processing piepleines</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-digital-numbers-to-radiance">4.1. Converting Digital numbers to Radiance</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#radiance-to-reflectance">4.2. Radiance to Reflectance</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-vegetation-indices">4.3. Deriving vegetation indices</a></li>
 </ul>
 
   </nav></div>
