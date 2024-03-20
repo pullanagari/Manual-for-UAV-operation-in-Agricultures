@@ -184,7 +184,6 @@
 
 
 
-
 </ul>
 
     </div>
@@ -390,10 +389,14 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-management">3. Data management</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-piepleines">4. Data processing piepleines</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-digital-numbers-to-radiance">4.1. Converting Digital numbers to Radiance</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#radiance-to-reflectance">4.2. Radiance to Reflectance</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-vegetation-indices">4.3. Deriving vegetation indices</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-piepleines">4. Data processing piepleines</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-digital-numbers-to-radiance">4.1. Converting Digital numbers to Radiance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiance-to-reflectance">4.2. Radiance to Reflectance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-vegetation-indices">4.3. Deriving vegetation indices</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualise-the-plots-on-a-raster">Visualise the plots on a raster</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-ndvi-values-of-individual-plots">Extracting NDVI values of individual plots</a></li>
 </ul>
 
             </nav>
@@ -406,10 +409,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><img alt="" src="_images/logo.jpeg" /></p>
+  <!-- ![](logo.jpeg) -->
 <section class="tex2jax_ignore mathjax_ignore" id="introduction">
 <h1>1. Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
-<p>Continuous advancements in Unmanned Aerial Vehicle (UAV) technology have broadened its applications in agriculture. These innovations play a crucial role in fostering sustainable solutions and influencing policies and decisions in agriculture. However, the regulatory framework for UAV flights and the development of standardized protocols for precise data capture are continuously evolving. It is imperative to uphold accurate data quality for synergizing multiyear data and other spectral sensors (satellites, drones, lab sensors. To maintain high standards, some essential steps were proposed.</p>
+<p>Continuous advancements in Unmanned Aerial Vehicle (UAV) technology have broadened its applications in agriculture. These innovations play a crucial role in fostering sustainable solutions and influencing policies and decisions in agriculture. However, the regulatory framework for UAV flights and the development of standardized protocols for precise data capture are continuously evolving. It is imperative to uphold accurate data quality for synergizing multiyear data and other spectral sensors (satellites, drones, field and lab sensors). To maintain high standards, some essential steps were proposed.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="pre-planning">
 <h1>2. Pre planning<a class="headerlink" href="#pre-planning" title="Link to this heading">#</a></h1>
@@ -420,6 +423,7 @@ document.write(`
 <li><p>Ensure the survey area is not within classfied airspace.</p></li>
 <li><p>List the equipment required for the survey.</p></li>
 <li><p>Select clearly identifiable ground control point (GCP) locations within the survey area, essential for referencing UAV products.</p></li>
+<li><p>Ensure that the flight lines are positioned clear of any electric lines or poles that could potentially interfere with signal transmission.</p></li>
 </ul>
 </section>
 <section id="weather-forecasting">
@@ -427,7 +431,8 @@ document.write(`
 <p>Verify the weather forecast before initiating the survey.
 Increasing availability atmosphere data from multiple satellites enables to predict accurate weather prediction for drone campaigns.</p>
 <p>Accessing weather information from ECMWF forecasts and Meteosat imagery allows the user to view up to two synchronised loops of the products.</p>
-<p>If possible, obtain local/in-situ weather conditions (cloud cover, wind etc.) from the site person.</p>
+<p>If possible, obtain local/in-situ weather conditions (cloud cover, wind etc.) from the site person.
+Although many of of UAV flights can withstand 35-50 km/hr winds, flying over 20km/hr will create vibrations thus image quality is effected.</p>
 </section>
 <section id="site-and-risk-assessment-and-permissions">
 <h2>2.3. Site and risk assessment and permissions<a class="headerlink" href="#site-and-risk-assessment-and-permissions" title="Link to this heading">#</a></h2>
@@ -442,7 +447,9 @@ Increasing availability atmosphere data from multiple satellites enables to pred
 <ul class="simple">
 <li><p>Record the site conditions in the logbook before initiating the drone flight.</p></li>
 <li><p>Check the GPS/GNSS quality, ensuring a minimum of 5 satellites are available.</p></li>
-<li><p>Place the GCP targets in pre-defined locations.</p></li>
+<li></li>
+<li><p>It is recommneded to conduct survey (applicable to spectral cameras only as it relies on natural illumination condictions) wihtin +/- two hours of solar noon  to reduce artifacts from shadows and sun angles.</p></li>
+<li><p>Place the GCP and calibration targets in pre-defined locations. The calibration targets should be evaluted with a ground spectroradiometer in order to ensure clealiness and consistancy between the measurements.</p></li>
 <li><p>Ensure sensors lens is clean if not clean with a lens tissue.</p></li>
 <li><p>Turn ON instruments, especially the spectral camera, 15 minutes before collecting actual measurements.</p></li>
 <li><p>Ensure that a clean calibration target should be used for the calibration.</p></li>
@@ -473,9 +480,8 @@ Increasing availability atmosphere data from multiple satellites enables to pred
 <li><p>Digital numbers(DN) The amount of reflected light energy measured by the sensor recorded in the form of a binary integers which is not considered as qunatitative value thus not scientifc value. The range of binary integers depend on the radiometric resolution of the sensor. For example A sensor with 8 bits (rediometric resolution) records the data from 0 to 255, while 16 bits sensor records values from 0 to 65536.
 Radiometric resolution indciates the sensor sensitivity to detect minor energy differences. High resolution sensors has higher sensitivity.</p></li>
 </ul>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="converting-digital-numbers-to-radiance">
-<h1>4.1. Converting Digital numbers to Radiance<a class="headerlink" href="#converting-digital-numbers-to-radiance" title="Link to this heading">#</a></h1>
+<section id="converting-digital-numbers-to-radiance">
+<h2>4.1. Converting Digital numbers to Radiance<a class="headerlink" href="#converting-digital-numbers-to-radiance" title="Link to this heading">#</a></h2>
 <p>Radiance The DN converted to radiance using the a gain and offset values per each band, this process also called as radiometric calibration. The gain and offset values generally supplied from teh sensor manufactrer, if not the values can be retrieved using an integrating sphere. The radaince units are watts/m2 steradian nm.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -489,8 +495,8 @@ L_{band} = DN * Gain_{band} + Offset_{band}
 <li><p>Offset = Intercept of the spectral band</p></li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="radiance-to-reflectance">
-<h1>4.2. Radiance to Reflectance<a class="headerlink" href="#radiance-to-reflectance" title="Link to this heading">#</a></h1>
+<section id="radiance-to-reflectance">
+<h2>4.2. Radiance to Reflectance<a class="headerlink" href="#radiance-to-reflectance" title="Link to this heading">#</a></h2>
 <p>The portional of the light reflected from the object to the sensors. The reflectance measured in the range of 0-100% which depend on the properties of the reflected surface. Since the radiance values infleunced by various components (atmospheric and aerosol profile, and geometric factors) their interactions with radition, conversion into surface relfectance is essential to retrive phenological infromation.
 Generally three methods are followed these effects.</p>
 <ul class="simple">
@@ -498,16 +504,19 @@ Generally three methods are followed these effects.</p>
 <li><p>Atmospheric Radiative transfer model (RTM)</p></li>
 <li><p>Hybrid method</p></li>
 </ul>
-<p>Empirical appraoches are widely used because of ease in implementation and repeatable under constant illumination conditions based on linear regression between reference panels and drone radiance values.
-Reading the raw multispectral images from the drone and and calibrating them into reflectance maps and stitiching the phtos can be done using different photorammetry softwares (Pix4D, Agrisoft, ArcGIS Drone2map).
-In case of multispectral images stadard reference panels (white and dark) are used to determine the scale factor which later applied over the image to convert into reflectance cube. The above softwares automatically extract reference panel information from by finding the QR code within an image.</p>
+<p>Empirical approaches for analyzing drone-based multispectral imagery are widely employed due to their relative simplicity in implementation and the ability to replicate the process under consistent illumination conditions. These approaches typically involve establishing a linear regression model between the radiance values recorded by the drone’s sensors and those of reference panels with known reflectance properties.</p>
+<p>The process begins with acquiring raw multispectral images from the drone’s camera system. These images need to be calibrated and converted into reflectance maps, which represent the actual reflectance of the observed surfaces at different wavelengths. Additionally, the individual images must be stitched together to create a seamless mosaic of the surveyed area. This entire workflow can be facilitated by specialized photogrammetry software solutions, such as <a class="reference external" href="https://www.pix4d.com/">Pix4D</a>, <a class="reference external" href="https://www.agisoft.com/">Agisoft</a>, and ArcGIS <a class="reference external" href="https://esriaustralia.com.au/arcgis-drone2map">Drone2Map</a>. These softwares</p>
+<p>In the context of multispectral imagery, standard reference panels with known reflectance characteristics, typically a white panel (high reflectance) and a dark panel (low reflectance), are employed to determine the scale factor necessary for converting the raw image data into reflectance values. These reference panels are strategically placed within the survey area and are automatically detected by the photogrammetry software through the recognition of embedded QR codes or other identification markers. The software then uses the radiance values recorded for these panels to calculate the scale factor, which is subsequently applied to the entire image dataset, resulting in a calibrated reflectance cube representing the multispectral characteristics of the surveyed area.</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="deriving-vegetation-indices">
-<h1>4.3. Deriving vegetation indices<a class="headerlink" href="#deriving-vegetation-indices" title="Link to this heading">#</a></h1>
+<section id="deriving-vegetation-indices">
+<h2>4.3. Deriving vegetation indices<a class="headerlink" href="#deriving-vegetation-indices" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 <span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">import</span> <span class="nn">rasterio.plot</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="n">image_array</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;data/Multispec_30m.tif&#39;</span><span class="p">)</span>
 <span class="n">image_array</span><span class="o">.</span><span class="n">meta</span>
@@ -535,9 +544,9 @@ In case of multispectral images stadard reference panels (white and dark) are us
 <span class="n">green</span> <span class="o">=</span> <span class="n">image_array</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">blue</span> <span class="o">=</span> <span class="n">image_array</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">red</span> <span class="o">=</span> <span class="n">image_array</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">rededge</span> <span class="o">=</span> <span class="n">image_array</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">nir</span> <span class="o">=</span> <span class="n">image_array</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">panchromatic</span> <span class="o">=</span> <span class="n">image_array</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">rededge</span> <span class="o">=</span> <span class="n">image_array</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">nir</span> <span class="o">=</span> <span class="n">image_array</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">panchromatic</span> <span class="o">=</span> <span class="n">image_array</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
 
 <span class="c1">#NDVI - Normalized Vegetation Index</span>
 <span class="n">NDVI</span> <span class="o">=</span> <span class="p">(</span><span class="n">nir</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">-</span> <span class="n">red</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">nir</span> <span class="o">+</span> <span class="n">red</span><span class="p">)</span>
@@ -559,12 +568,68 @@ In case of multispectral images stadard reference panels (white and dark) are us
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_7508\866925832.py:22: RuntimeWarning: invalid value encountered in sqrt
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_28404\251264815.py:22: RuntimeWarning: invalid value encountered in sqrt
   MSAVI2 = 0.5 * (2 * nir.astype(float) + 1 - np.sqrt(2 * nir.astype(float) + 1) * 2 - 8*(nir.astype(float) - red.astype(float)))
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_7508\866925832.py:25: RuntimeWarning: divide by zero encountered in divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_28404\251264815.py:25: RuntimeWarning: divide by zero encountered in divide
   ARVI = (nir.astype(float) + blue.astype(float))/(nir.astype(float) - blue.astype(float))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="visualise-the-plots-on-a-raster">
+<h1>Visualise the plots on a raster<a class="headerlink" href="#visualise-the-plots-on-a-raster" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">rasterio</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">image_array</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">shape</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">image_array</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">shape</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;shape&#39; is not defined
+</pre></div>
+</div>
+<img alt="_images/1ad12a5aa205681b2ee67612527cca30e7c199c94dd83b1a400fde261b0f83ca.png" src="_images/1ad12a5aa205681b2ee67612527cca30e7c199c94dd83b1a400fde261b0f83ca.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="extracting-ndvi-values-of-individual-plots">
+<h1>Extracting NDVI values of individual plots<a class="headerlink" href="#extracting-ndvi-values-of-individual-plots" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shape</span> <span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;data/ground_truth_shape 1.shp&quot;</span><span class="p">)</span>
+<span class="n">stats</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">zonal_stats</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">NDVI</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="n">affine</span><span class="p">,</span><span class="n">stats</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">]))</span>
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">shape</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gdf</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Shape_Leng  Shape_Area  Field  \
+0   22.288812   12.436359    1.0   
+1    0.000000    0.000000    2.0   
+2    0.000000    0.000000    3.0   
+3    0.000000    0.000000    4.0   
+4    0.000000    0.000000    5.0   
+
+                                            geometry      mean  
+0  POLYGON Z ((433053.691 6378464.678 0.000, 4330...  0.207306  
+1  POLYGON Z ((433055.474 6378464.640 0.000, 4330...  0.200503  
+2  POLYGON Z ((433057.683 6378464.407 0.000, 4330...  0.226787  
+3  POLYGON Z ((433059.505 6378463.903 0.000, 4330...  0.206959  
+4  POLYGON Z ((433061.641 6378463.751 0.000, 4330...  0.213492  
 </pre></div>
 </div>
 </div>
@@ -638,10 +703,14 @@ with your book. For more information about this, see <a class="reference externa
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-management">3. Data management</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-piepleines">4. Data processing piepleines</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-digital-numbers-to-radiance">4.1. Converting Digital numbers to Radiance</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#radiance-to-reflectance">4.2. Radiance to Reflectance</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-vegetation-indices">4.3. Deriving vegetation indices</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-piepleines">4. Data processing piepleines</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-digital-numbers-to-radiance">4.1. Converting Digital numbers to Radiance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiance-to-reflectance">4.2. Radiance to Reflectance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-vegetation-indices">4.3. Deriving vegetation indices</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualise-the-plots-on-a-raster">Visualise the plots on a raster</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-ndvi-values-of-individual-plots">Extracting NDVI values of individual plots</a></li>
 </ul>
 
   </nav></div>

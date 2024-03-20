@@ -18,30 +18,18 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import numpy as np
-import cv2
-import matplotlib.pyplot as plt
-import os
-import rasterio as rio
-%matplotlib inline
-
-
-# Read Multispectral/hyperspectral data
-multi = rio.open('/example.tif')
-multi_array = multi.read()
-
-
-
+fig, ax = plt.subplots(figsize=(5, 5))
+rasterio.plot.show(image_array, ax=ax)
+shape.plot(ax=ax, facecolor='none', edgecolor='red')
 ------------------
 
 
 [1;31m---------------------------------------------------------------------------[0m
-[1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [1;32mIn[1], line 2[0m
-[0;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
-[1;32m----> 2[0m [38;5;28;01mimport[39;00m [38;5;21;01mcv2[39;00m
-[0;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
-[0;32m      4[0m [38;5;28;01mimport[39;00m [38;5;21;01mos[39;00m
+[1;31mNameError[0m                                 Traceback (most recent call last)
+Cell [1;32mIn[3], line 3[0m
+[0;32m      1[0m fig, ax [38;5;241m=[39m plt[38;5;241m.[39msubplots(figsize[38;5;241m=[39m([38;5;241m5[39m, [38;5;241m5[39m))
+[0;32m      2[0m rasterio[38;5;241m.[39mplot[38;5;241m.[39mshow(image_array, ax[38;5;241m=[39max)
+[1;32m----> 3[0m [43mshape[49m[38;5;241m.[39mplot(ax[38;5;241m=[39max, facecolor[38;5;241m=[39m[38;5;124m'[39m[38;5;124mnone[39m[38;5;124m'[39m, edgecolor[38;5;241m=[39m[38;5;124m'[39m[38;5;124mred[39m[38;5;124m'[39m)
 
-[1;31mModuleNotFoundError[0m: No module named 'cv2'
+[1;31mNameError[0m: name 'shape' is not defined
 
