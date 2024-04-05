@@ -184,6 +184,7 @@
 
 
 
+
 </ul>
 
     </div>
@@ -397,6 +398,11 @@ document.write(`
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualise-the-plots-on-a-raster">Visualise the plots on a raster</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-ndvi-values-of-individual-plots">Extracting NDVI values of individual plots</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-pipelines-for-hyperspectral-data-hsi">4. Data processing pipelines for hyperspectral data (HSI)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-raw-data-and-relevant-metdata-information">Importing raw data and relevant metdata information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-raw-hyperspectral-data-to-radiance-radiometric-correction-calibration">4.1. Converting Raw hyperspectral data to Radiance (Radiometric correction/calibration)</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -703,14 +709,14 @@ Radiometric resolution indciates the sensor sensitivity to detect minor energy d
 </div>
 <section id="converting-digital-numbers-to-radiance">
 <h2>4.1. Converting Digital numbers to Radiance<a class="headerlink" href="#converting-digital-numbers-to-radiance" title="Link to this heading">#</a></h2>
-<p>Radiance The DN converted to radiance using the a gain and offset values per each band, this process also called as radiometric calibration. The gain and offset values generally supplied from teh sensor manufactrer, if not the values can be retrieved using an integrating sphere. The radaince units are watts/m2 steradian nm.</p>
+<p>Radiance The DN converted to at-sensor radiance using the a gain and offset values per each band, this process also called as radiometric calibration. The gain and offset values generally supplied from teh sensor manufactrer, if not the values can be retrieved using an integrating sphere. The radiance units are Watts/m2/sr/nm</p>
 <div class="math notranslate nohighlight">
 \[
 L_{band} = DN * Gain_{band} + Offset_{band}
 \]</div>
 <p>where:</p>
 <ul class="simple">
-<li><p>L_band = spectral radaince c(watts/(m2*steradian nm)</p></li>
+<li><p>L_band = spectral radaince c(watts/m2/steradian/nm)</p></li>
 <li><p>DN = Digital numbers</p></li>
 <li><p>Gain =  Slope of the spectral band</p></li>
 <li><p>Offset = Intercept of the spectral band</p></li>
@@ -718,7 +724,7 @@ L_{band} = DN * Gain_{band} + Offset_{band}
 </section>
 <section id="radiance-to-reflectance">
 <h2>4.2. Radiance to Reflectance<a class="headerlink" href="#radiance-to-reflectance" title="Link to this heading">#</a></h2>
-<p>The portional of the light reflected from the object to the sensors. The reflectance measured in the range of 0-100% which depend on the properties of the reflected surface. Since the radiance values infleunced by various components (atmospheric and aerosol profile, and geometric factors) their interactions with radition, conversion into surface relfectance is essential to retrive phenological infromation.
+<p>The portional of the light reflected from the object to the sensors relative to the incoming solar radiation. The reflectance measured in the range of 0-100% which depend on the properties of the reflected surface. Since the radiance values infleunced by various components (atmospheric and aerosol profile, and geometric factors) their interactions with radiation, conversion into wavelength dependent surface relfectance is essential to retrive phenological information.
 Generally three methods are followed these effects.</p>
 <ul class="simple">
 <li><p>Empirical Line</p></li>
@@ -789,11 +795,11 @@ Generally three methods are followed these effects.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_3980\251264815.py:22: RuntimeWarning: invalid value encountered in sqrt
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_10820\251264815.py:22: RuntimeWarning: invalid value encountered in sqrt
   MSAVI2 = 0.5 * (2 * nir.astype(float) + 1 - np.sqrt(2 * nir.astype(float) + 1) * 2 - 8*(nir.astype(float) - red.astype(float)))
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_3980\251264815.py:25: RuntimeWarning: divide by zero encountered in divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_10820\251264815.py:25: RuntimeWarning: divide by zero encountered in divide
   ARVI = (nir.astype(float) + blue.astype(float))/(nir.astype(float) - blue.astype(float))
 </pre></div>
 </div>
@@ -854,8 +860,186 @@ Generally three methods are followed these effects.</p>
 </div>
 </div>
 </div>
+<p>Remote sensing data infleunced by noise and uncertainty caused by atmoshpehre, solar and viewing geometry, variable illumination by clouds and haze, terrain.</p>
+<p>The atmsopheric effects are computed based on simulated physically based radiation transfer model and the relevant atmsphere condictions. In this atmsophere properties were charecterised using radiave transfer code such as MODTRAN and 6S.</p>
 <p>There is a lot more that you can do with outputs (such as including interactive outputs)
 with your book. For more information about this, see <a class="reference external" href="https://jupyterbook.org">the Jupyter Book documentation</a></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="data-processing-pipelines-for-hyperspectral-data-hsi">
+<h1>4. Data processing pipelines for hyperspectral data (HSI)<a class="headerlink" href="#data-processing-pipelines-for-hyperspectral-data-hsi" title="Link to this heading">#</a></h1>
+<p>Compared to Multispectral data, the pipelines for hyperspectral data is slightly different due to the sensor mechanical design.
+Push-broom design based sensors typically used in hyperspectral scanning which acquires images line-by-line, in which the spatial infromation is displayed along x and y-axis and the wavelength information on z-axis. As the sensor platform move forward, the sensor continuosly captures the data cube in a strip format.</p>
+<section id="importing-raw-data-and-relevant-metdata-information">
+<h2>Importing raw data and relevant metdata information<a class="headerlink" href="#importing-raw-data-and-relevant-metdata-information" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.gridspec</span> <span class="kn">import</span> <span class="n">GridSpec</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">exposure</span>
+<span class="kn">import</span> <span class="nn">builtins</span>
+<span class="c1"># Reading raw data</span>
+<span class="n">DN_array</span> <span class="o">=</span> <span class="p">(</span><span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;hsi_data/test.dat&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="c1"># Reading header file</span>
+<span class="k">def</span> <span class="nf">read_header</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c1"># have_nonlowercase_param = False</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">while</span> <span class="n">lines</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;;&#39;</span><span class="p">:</span> <span class="k">continue</span>
+
+            <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">sep</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span><span class="o">.</span><span class="n">islower</span><span class="p">():</span>
+                <span class="n">have_nonlowercase_param</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">support_nonlowercase_params</span><span class="p">:</span>
+                    <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">val</span> <span class="ow">and</span> <span class="n">val</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;{&#39;</span><span class="p">:</span>
+                <span class="nb">str</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">while</span> <span class="nb">str</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;}&#39;</span><span class="p">:</span>
+                    <span class="n">line</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;;&#39;</span><span class="p">:</span> <span class="k">continue</span>
+
+                    <span class="nb">str</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;description&#39;</span><span class="p">:</span>
+                    <span class="nb">dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">vals</span> <span class="o">=</span> <span class="nb">str</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">)):</span>
+                        <span class="n">vals</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                    <span class="nb">dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="k">return</span> <span class="nb">dict</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">EnviHeaderParsingError</span><span class="p">()</span>
+
+<span class="n">header</span> <span class="o">=</span> <span class="n">read_header</span><span class="p">(</span><span class="s1">&#39;hsi_data/test.hdr&#39;</span><span class="p">)</span>
+<span class="n">wavelengths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;wavelength&#39;</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+<span class="n">wavelengths</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">wavelengths</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span>
+
+<span class="c1"># plotting the raw image and raw spectral data</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">GridSpec</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># First axes</span>
+
+<span class="k">def</span> <span class="nf">norm</span><span class="p">(</span><span class="n">band</span><span class="p">):</span>
+    <span class="n">band_min</span><span class="p">,</span> <span class="n">band_max</span> <span class="o">=</span> <span class="n">band</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">band</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">((</span><span class="n">band</span> <span class="o">-</span> <span class="n">band_min</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">band_max</span> <span class="o">-</span> <span class="n">band_min</span><span class="p">))</span>
+<span class="n">Red</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">DN_array</span><span class="p">[</span><span class="mi">75</span><span class="p">,:,:])</span>
+<span class="n">Green</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">DN_array</span><span class="p">[</span><span class="mi">55</span><span class="p">,:,:])</span>
+<span class="n">Blue</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">DN_array</span><span class="p">[</span><span class="mi">25</span><span class="p">,:,:])</span>
+<span class="n">rgb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">((</span><span class="n">Red</span><span class="p">,</span> <span class="n">Green</span><span class="p">,</span> <span class="n">Blue</span><span class="p">))</span>
+  
+<span class="n">pLow</span><span class="p">,</span> <span class="n">pHigh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">rgb</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">rgb</span><span class="p">)],</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">95</span><span class="p">))</span>
+<span class="n">img_rescale</span> <span class="o">=</span> <span class="n">exposure</span><span class="o">.</span><span class="n">rescale_intensity</span><span class="p">(</span><span class="n">rgb</span><span class="p">,</span> <span class="n">in_range</span><span class="o">=</span><span class="p">(</span><span class="n">pLow</span><span class="p">,</span><span class="n">pHigh</span><span class="p">))</span>
+<span class="n">ax0</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">ax0</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_rescale</span><span class="p">)</span>
+
+<span class="c1"># Second axes</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span><span class="n">DN_array</span><span class="p">[:,</span><span class="mi">2100</span><span class="p">,</span><span class="mi">100</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">ax1</span><span class="o">.</span><span class="n">get_xticks</span><span class="p">()[::</span><span class="mi">25</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">labelrotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;DN values&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Dark pixel&#39;</span><span class="p">)</span>
+
+<span class="c1"># Third axes</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span><span class="n">DN_array</span><span class="p">[:,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">200</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;DN values&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span> <span class="p">(</span><span class="s1">&#39;wavelength (nm)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span> <span class="p">(</span><span class="s1">&#39;Vegetation pixel&#39;</span><span class="p">)</span>
+<span class="c1"># ax2.set_xticks(ax2.get_xticks()[::25])</span>
+<span class="c1"># ax2.tick_params(axis=&#39;x&#39;, labelrotation=45)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\.conda\envs\book\Lib\site-packages\rasterio\__init__.py:317: NotGeoreferencedWarning: Dataset has no geotransform, gcps, or rpcs. The identity matrix will be returned.
+  dataset = DatasetReader(path, driver=driver, sharing=sharing, **kwargs)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Vegetation pixel&#39;)
+</pre></div>
+</div>
+<img alt="_images/b3b516871ee1f20aef9bf3eb4792ad47d92556f74dee567aa9be4f1513985132.png" src="_images/b3b516871ee1f20aef9bf3eb4792ad47d92556f74dee567aa9be4f1513985132.png" />
+</div>
+</div>
+</section>
+<section id="converting-raw-hyperspectral-data-to-radiance-radiometric-correction-calibration">
+<h2>4.1. Converting Raw hyperspectral data to Radiance (Radiometric correction/calibration)<a class="headerlink" href="#converting-raw-hyperspectral-data-to-radiance-radiometric-correction-calibration" title="Link to this heading">#</a></h2>
+<p>The radiometric correction process consists of the conversion of incident photons into light intensity (radiance). This process typically involves collecting dark current (DC) and substracting from the measured DN. and thereafter the values were interpretated with raditiometric coefficients values using the above formula.</p>
+<p>The radiometric coefficients generally supplied by the manfacturers who calibrates an individual sensor in a calibrated integrating sphere associated with tracebale light source.
+<img src="integrating spere.png" alt="Integrating sphere being " style="width: 300px;"/></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DN_array</span><span class="o">=</span> <span class="n">DN_array</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">DC_array</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">DN_array</span><span class="p">[</span><span class="mi">2050</span><span class="p">:,:,:],</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">DN_DC_array</span><span class="o">=</span><span class="n">DN_array</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2000</span><span class="p">,:,:]</span><span class="o">-</span><span class="n">DC_array</span>
+<span class="n">DN_DC_array</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2000, 384, 449)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">coeff</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;Radiometric_coefficients_AisaFENIX_052023.xlsx&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">coeff</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">coeff</span><span class="p">)</span>
+<span class="n">radiance</span> <span class="o">=</span> <span class="n">DN_DC_array</span> <span class="o">*</span> <span class="n">coeff</span>
+<span class="c1"># plotting the raw image and raw spectral data</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">GridSpec</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># First axes</span>
+
+<span class="k">def</span> <span class="nf">norm</span><span class="p">(</span><span class="n">band</span><span class="p">):</span>
+    <span class="n">band_min</span><span class="p">,</span> <span class="n">band_max</span> <span class="o">=</span> <span class="n">band</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">band</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">((</span><span class="n">band</span> <span class="o">-</span> <span class="n">band_min</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">band_max</span> <span class="o">-</span> <span class="n">band_min</span><span class="p">))</span>
+<span class="n">Red</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">radiance</span><span class="p">[:,:,</span><span class="mi">75</span><span class="p">])</span>
+<span class="n">Green</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">radiance</span><span class="p">[:,:,</span><span class="mi">55</span><span class="p">])</span>
+<span class="n">Blue</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">radiance</span><span class="p">[:,:,</span><span class="mi">25</span><span class="p">])</span>
+<span class="n">rgb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">((</span><span class="n">Red</span><span class="p">,</span> <span class="n">Green</span><span class="p">,</span> <span class="n">Blue</span><span class="p">))</span>
+  
+<span class="n">pLow</span><span class="p">,</span> <span class="n">pHigh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">rgb</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">rgb</span><span class="p">)],</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">95</span><span class="p">))</span>
+<span class="n">img_rescale</span> <span class="o">=</span> <span class="n">exposure</span><span class="o">.</span><span class="n">rescale_intensity</span><span class="p">(</span><span class="n">rgb</span><span class="p">,</span> <span class="n">in_range</span><span class="o">=</span><span class="p">(</span><span class="n">pLow</span><span class="p">,</span><span class="n">pHigh</span><span class="p">))</span>
+<span class="n">ax0</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">ax0</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_rescale</span><span class="p">)</span>
+
+<span class="c1"># Second axes</span>
+
+<span class="c1"># ax1 = plt.subplot(gs[0,1])</span>
+<span class="c1"># ax1 = fig.add_subplot(gs[0, 1])</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span><span class="n">radiance</span><span class="p">[</span><span class="mi">1900</span><span class="p">,</span><span class="mi">100</span><span class="p">,:])</span>
+<span class="c1"># ax1.set_xticks(ax1.get_xticks()[::25])</span>
+<span class="c1"># ax1.tick_params(axis=&#39;x&#39;, labelrotation=45)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Radiance (Watts/m2/sr/nm)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Radiance Spectra&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Radiance Spectra&#39;)
+</pre></div>
+</div>
+<img alt="_images/eae166064f6142766d0280bcc4eea1cc7649b22bcd81727577e6874bf3768dc7.png" src="_images/eae166064f6142766d0280bcc4eea1cc7649b22bcd81727577e6874bf3768dc7.png" />
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -931,6 +1115,11 @@ with your book. For more information about this, see <a class="reference externa
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualise-the-plots-on-a-raster">Visualise the plots on a raster</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-ndvi-values-of-individual-plots">Extracting NDVI values of individual plots</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-pipelines-for-hyperspectral-data-hsi">4. Data processing pipelines for hyperspectral data (HSI)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-raw-data-and-relevant-metdata-information">Importing raw data and relevant metdata information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-raw-hyperspectral-data-to-radiance-radiometric-correction-calibration">4.1. Converting Raw hyperspectral data to Radiance (Radiometric correction/calibration)</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>
