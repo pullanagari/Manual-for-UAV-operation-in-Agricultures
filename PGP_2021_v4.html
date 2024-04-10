@@ -1549,6 +1549,174 @@ W:\pgp\NPT\4_Fenix\2021_9Nov\AtmCorrected\r20_AtmCorr.hdr
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>    
+  <span class="k">def</span> <span class="nf">empirical_line_fit</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span>
+                       <span class="n">out_dir</span><span class="p">,</span>
+                       <span class="n">center_wavelengths</span><span class="p">,</span>
+                       <span class="n">dark_tarp_vals</span><span class="p">,</span>
+                       <span class="n">bright_tarp_vals</span><span class="p">,</span>
+                       <span class="n">row_col_bright</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">row_col_dark</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tiles</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    
+
+    
+    <span class="c1"># zip tarp values and make into list of arrays (array = band&#39;s values)</span>
+    <span class="n">ref_vals</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bright_tarp_vals</span><span class="p">,</span> <span class="n">dark_tarp_vals</span><span class="p">)</span>
+    <span class="n">ref_vals</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">band</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="k">for</span> <span class="n">band</span> <span class="ow">in</span> <span class="n">ref_vals</span><span class="p">]</span>
+    
+    <span class="c1"># open image with GDAL</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+    
+    <span class="c1"># unpack row/col tarp location tuples</span>
+    <span class="n">row_bright</span><span class="p">,</span> <span class="n">col_bright</span> <span class="o">=</span> <span class="n">row_col_bright</span>  
+    <span class="n">row_dark</span><span class="p">,</span> <span class="n">col_dark</span> <span class="o">=</span> <span class="n">row_col_dark</span>
+    
+    
+    <span class="n">obs</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># list to store mean observed tarp values</span>
+    <span class="c1"># initiate loop over the 5 optical bands</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+        <span class="c1"># get band and its values</span>
+        <span class="c1"># divide by 10,000 b/c input TIFFs are already scaled by that factor</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">GetRasterBand</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">ReadAsArray</span><span class="p">()</span> <span class="o">*</span> <span class="mf">.0001</span>
+        <span class="c1"># extract 3x3 array centered on the tarps and take mean pixels</span>
+        <span class="n">bright_ref</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">row_bright</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="n">row_bright</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">col_bright</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="n">col_bright</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">bright_ref_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bright_ref</span><span class="p">)</span>
+        <span class="n">dark_ref</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">row_dark</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="n">row_dark</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">col_dark</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="n">col_dark</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">dark_ref_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dark_ref</span><span class="p">)</span>
+        <span class="c1"># append values to list as a tuple</span>
+        <span class="n">obs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">bright_ref_mean</span><span class="p">,</span> <span class="n">dark_ref_mean</span><span class="p">))</span>
+    
+    <span class="c1"># convert list of tuples to list of arrays and reshape to match ref_vals</span>
+    <span class="n">obs_vals</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">band</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="k">for</span> <span class="n">band</span> <span class="ow">in</span> <span class="n">obs</span><span class="p">]</span>
+
+    
+    <span class="c1"># extract bright/dark obs into separate arrays for plotting later on</span>
+    <span class="n">obs_bright</span> <span class="o">=</span> <span class="p">[</span><span class="n">entry</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">obs</span><span class="p">]</span>
+    <span class="n">obs_dark</span> <span class="o">=</span> <span class="p">[</span><span class="n">entry</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">obs</span><span class="p">]</span>
+    
+    <span class="c1"># run linear regression on each band and store coeffs/intercepts</span>
+    <span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">band</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">center_wavelengths</span><span class="p">)):</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">obs_vals</span><span class="p">[</span><span class="n">band</span><span class="p">],</span> <span class="n">ref_vals</span><span class="p">[</span><span class="n">band</span><span class="p">])</span>
+        <span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">model</span><span class="o">.</span><span class="n">intercept_</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    
+    <span class="c1"># apply empirical line fit to observed tarp values</span>
+    <span class="n">elf_bright</span> <span class="o">=</span> <span class="p">[</span><span class="n">obs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">models</span><span class="p">[</span><span class="n">obs</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">models</span><span class="p">[</span><span class="n">obs</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">obs</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">obs_bright</span><span class="p">))]</span>
+    <span class="n">elf_dark</span> <span class="o">=</span> <span class="p">[</span><span class="n">obs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">models</span><span class="p">[</span><span class="n">obs</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">models</span><span class="p">[</span><span class="n">obs</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">obs</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">obs_dark</span><span class="p">))]</span>
+    
+    <span class="c1"># shorthand vars for plotting</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">center_wavelengths</span>
+    <span class="n">y1</span> <span class="o">=</span> <span class="n">bright_tarp_vals</span>
+    <span class="n">y2</span> <span class="o">=</span> <span class="n">dark_tarp_vals</span>
+   
+    <span class="c1"># create plot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkorange&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkorange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bright Ref&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Dark Ref&#39;</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">elf_bright</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#988ED5&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">elf_dark</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#348ABD&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">elf_bright</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bright EMP&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#988ED5&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">elf_dark</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Dark EMP&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#348ABD&#39;</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">obs_bright</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#988ED5&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">obs_dark</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#348ABD&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">obs_bright</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Bright Obs&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#988ED5&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">obs_dark</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Dark Obs&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#348ABD&#39;</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">.65</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Empircal Line Fit Correction&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Reflectance&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Wavelength (nm)&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+
+    <span class="n">plot_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="n">image_basename</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;_EMP_Plot.png&#39;</span><span class="p">)</span>
+    <span class="c1"># save the plot or comment out if you don&#39;t want to save</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">plot_name</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">)</span>
+    
+    <span class="c1">##########################################################</span>
+    <span class="c1"># apply ELF to image and output as new scaled GeoTIFF</span>
+    <span class="k">for</span> <span class="n">tile</span> <span class="ow">in</span> <span class="n">tiles</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">tile</span> <span class="o">!=</span> <span class="n">tiles</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">image_path_in</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">tile</span><span class="p">)</span>
+            <span class="n">ds</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">image_path_in</span><span class="p">)</span>
+        <span class="n">image_path_out</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="n">tile</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;_EMP.tif&#39;</span><span class="p">)</span>
+        <span class="n">dtype</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">GDT_UInt16</span>
+        <span class="n">XSize</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">GetRasterBand</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">XSize</span>
+        <span class="n">YSize</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">GetRasterBand</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">YSize</span>
+        
+        <span class="n">driver</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">GetDriverByName</span><span class="p">(</span><span class="s1">&#39;GTiff&#39;</span><span class="p">)</span>
+        <span class="n">ds_out</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="n">image_path_out</span><span class="p">,</span> <span class="n">XSize</span><span class="p">,</span> <span class="n">YSize</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span><span class="c1">#, options=[&#39;BIGTIFF=YES&#39;])</span>
+        <span class="n">ds_out</span><span class="o">.</span><span class="n">SetProjection</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">GetProjection</span><span class="p">())</span>
+        <span class="n">ds_out</span><span class="o">.</span><span class="n">SetGeoTransform</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">GetGeoTransform</span><span class="p">())</span>
+        
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">):</span>
+            <span class="n">inband</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">GetRasterBand</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">outband</span> <span class="o">=</span> <span class="n">ds_out</span><span class="o">.</span><span class="n">GetRasterBand</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+            <span class="c1"># define gain and offset; i - 1 b/c gdal doesn&#39;t use 0 indexing</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">:</span>  <span class="c1"># needed because thermal band (6) is not included </span>
+                <span class="n">gain</span> <span class="o">=</span> <span class="n">models</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">offset</span> <span class="o">=</span> <span class="n">models</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+            
+                <span class="c1"># set scale for optical bands to 1000 for compression</span>
+                <span class="n">outband</span><span class="o">.</span><span class="n">SetScale</span><span class="p">(</span><span class="mf">.0001</span><span class="p">)</span>
+                <span class="n">outband</span><span class="o">.</span><span class="n">SetOffset</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="c1">#  by 10,000 b/c input TIFFs are already scaled by that factor</span>
+                <span class="n">dta</span> <span class="o">=</span> <span class="n">inband</span><span class="o">.</span><span class="n">ReadAsArray</span><span class="p">()</span> <span class="o">*</span> <span class="mf">.0001</span>
+                <span class="n">dta_ma</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">masked_values</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
+                <span class="c1"># change values that were 1.0 in original to no data value</span>
+                <span class="c1"># apply gain and offset and scale</span>
+                <span class="n">dta_ma_EMP_scaled</span> <span class="o">=</span> <span class="p">(</span><span class="n">dta_ma</span> <span class="o">*</span> <span class="n">gain</span> <span class="o">+</span> <span class="n">offset</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10000</span>
+                <span class="n">dta_EMP_scaled</span> <span class="o">=</span> <span class="n">dta_ma_EMP_scaled</span><span class="o">.</span><span class="n">filled</span><span class="p">(</span><span class="n">fill_value</span><span class="o">=</span><span class="mi">65535</span><span class="p">)</span>
+                
+                <span class="c1"># write</span>
+                <span class="n">outband</span><span class="o">.</span><span class="n">WriteArray</span><span class="p">(</span><span class="n">dta_EMP_scaled</span><span class="p">)</span>
+        
+            <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+                <span class="c1"># # set scale for thermal to 100 for compression</span>
+                <span class="n">outband</span><span class="o">.</span><span class="n">SetScale</span><span class="p">(</span><span class="mf">.01</span><span class="p">)</span>
+                <span class="n">outband</span><span class="o">.</span><span class="n">SetOffset</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">dta</span> <span class="o">=</span> <span class="n">inband</span><span class="o">.</span><span class="n">ReadAsArray</span><span class="p">()</span>
+                <span class="n">outband</span><span class="o">.</span><span class="n">WriteArray</span><span class="p">(</span><span class="n">dta</span><span class="p">)</span>
+                
+                <span class="c1"># this commented out section is only needed if input data is not already scaled</span>
+                <span class="c1"># dta_ma = ma.masked_values(dta, 1.)</span>
+                <span class="c1"># # change values that were 1.0 in original to no data value</span>
+                <span class="c1"># # apply scale (no empirical line fit)</span>
+                <span class="c1"># dta_ma_scaled = dta_ma * 100</span>
+                <span class="c1"># dta_scaled = dta_ma_scaled.filled(fill_value=65535)</span>
+        
+                
+                <span class="c1"># # write</span>
+                <span class="c1"># outband.WriteArray(dta_scaled)</span>
+            
+            
+            <span class="c1"># set no data value</span>
+            <span class="n">outband</span><span class="o">.</span><span class="n">SetNoDataValue</span><span class="p">(</span><span class="mi">65535</span><span class="p">)</span>
+            <span class="n">outband</span><span class="o">.</span><span class="n">FlushCache</span><span class="p">()</span>
+            <span class="c1"># compute statistics (Flase means it uses all values)</span>
+            <span class="n">ds_out</span><span class="o">.</span><span class="n">GetRasterBand</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">ComputeStatistics</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        
+        <span class="c1"># build overviews</span>
+        <span class="n">ds_out</span><span class="o">.</span><span class="n">BuildOverviews</span><span class="p">(</span><span class="s1">&#39;average&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">])</span>
+        
+        <span class="c1"># required to release variable and finish writing</span>
+        <span class="n">ds_out</span> <span class="o">=</span> <span class="kc">None</span>
+    
+    
+    
+    <span class="k">return</span> <span class="n">models</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
