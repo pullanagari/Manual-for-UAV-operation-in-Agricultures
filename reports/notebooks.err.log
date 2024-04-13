@@ -18,74 +18,39 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-rows, cols, n_bands = Radiance_array.shape 
-r1 = np.reshape(Radiance_array, (rows * cols, n_bands))
-# r1[r1==np.inf]=np.nan
-# r1 = np.nan_to_num(r1)
 
-ff=[]
-r2=[]
-r3=[]
-output = []
-for j in range(0,rows * cols):
-    r2=np.reshape(r1[j,:],(-1,1))
-    r2= scaler.transform(r2)
-#     r3.append(r2)
-# r4=np.asarray(r3)
-# r4=r4.reshape(rows*cols,n_bands)
+fig = plt.figure(figsize=(10,7))
+gs = GridSpec(nrows=1, ncols=2)
 
+ax0 = fig.add_subplot(gs[:, 0])
+ax0.imshow(rgb(Radiance_array))
 
+# Second axes
+header = read_header('hsi_data/img_radiance.hdr')
+wavelengths=np.asarray(header['wavelength'],dtype='float64')
+# ax1 = plt.subplot(gs[0,1])
+# ax1 = fig.add_subplot(gs[0, 1])
+ax1 = plt.axes([0.50, 0.45, 0.5, 0.3])
 
+# plotting
+tarps_radiance=extract_spectra(Radiance_array)
+ax1.plot(wavelengths,spectra)
+# ax1.set_xticks(ax1.get_xticks()[::25])
+# ax1.tick_params(axis='x', labelrotation=45)
+plt.ylabel('Radiance (Watts/m2/sr/nm)')
+plt.title('Radiance Spectra')
 ------------------
 
 
 [1;31m---------------------------------------------------------------------------[0m
-[1;31mValueError[0m                                Traceback (most recent call last)
-Cell [1;32mIn[14], line 12[0m
-[0;32m     10[0m [38;5;28;01mfor[39;00m j [38;5;129;01min[39;00m [38;5;28mrange[39m([38;5;241m0[39m,rows [38;5;241m*[39m cols):
-[0;32m     11[0m     r2[38;5;241m=[39mnp[38;5;241m.[39mreshape(r1[j,:],([38;5;241m-[39m[38;5;241m1[39m,[38;5;241m1[39m))
-[1;32m---> 12[0m     r2[38;5;241m=[39m [43mscaler[49m[38;5;241;43m.[39;49m[43mtransform[49m[43m([49m[43mr2[49m[43m)[49m
-[0;32m     13[0m [38;5;66;03m#     r3.append(r2)[39;00m
-[0;32m     14[0m [38;5;66;03m# r4=np.asarray(r3)[39;00m
-[0;32m     15[0m [38;5;66;03m# r4=r4.reshape(rows*cols,n_bands)[39;00m
+[1;31mNameError[0m                                 Traceback (most recent call last)
+Cell [1;32mIn[11], line 16[0m
+[0;32m     14[0m [38;5;66;03m# plotting[39;00m
+[0;32m     15[0m tarps_radiance[38;5;241m=[39mextract_spectra(Radiance_array)
+[1;32m---> 16[0m ax1[38;5;241m.[39mplot(wavelengths,[43mspectra[49m)
+[0;32m     17[0m [38;5;66;03m# ax1.set_xticks(ax1.get_xticks()[::25])[39;00m
+[0;32m     18[0m [38;5;66;03m# ax1.tick_params(axis='x', labelrotation=45)[39;00m
+[0;32m     19[0m plt[38;5;241m.[39mylabel([38;5;124m'[39m[38;5;124mRadiance (Watts/m2/sr/nm)[39m[38;5;124m'[39m)
 
-File [1;32m~\.conda\envs\book\Lib\site-packages\sklearn\utils\_set_output.py:295[0m, in [0;36m_wrap_method_output.<locals>.wrapped[1;34m(self, X, *args, **kwargs)[0m
-[0;32m    293[0m [38;5;129m@wraps[39m(f)
-[0;32m    294[0m [38;5;28;01mdef[39;00m [38;5;21mwrapped[39m([38;5;28mself[39m, X, [38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs):
-[1;32m--> 295[0m     data_to_wrap [38;5;241m=[39m [43mf[49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43mX[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
-[0;32m    296[0m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(data_to_wrap, [38;5;28mtuple[39m):
-[0;32m    297[0m         [38;5;66;03m# only wrap the first output for cross decomposition[39;00m
-[0;32m    298[0m         return_tuple [38;5;241m=[39m (
-[0;32m    299[0m             _wrap_data_with_container(method, data_to_wrap[[38;5;241m0[39m], X, [38;5;28mself[39m),
-[0;32m    300[0m             [38;5;241m*[39mdata_to_wrap[[38;5;241m1[39m:],
-[0;32m    301[0m         )
-
-File [1;32m~\.conda\envs\book\Lib\site-packages\sklearn\preprocessing\_data.py:534[0m, in [0;36mMinMaxScaler.transform[1;34m(self, X)[0m
-[0;32m    530[0m check_is_fitted([38;5;28mself[39m)
-[0;32m    532[0m xp, _ [38;5;241m=[39m get_namespace(X)
-[1;32m--> 534[0m X [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_validate_data[49m[43m([49m
-[0;32m    535[0m [43m    [49m[43mX[49m[43m,[49m
-[0;32m    536[0m [43m    [49m[43mcopy[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcopy[49m[43m,[49m
-[0;32m    537[0m [43m    [49m[43mdtype[49m[38;5;241;43m=[39;49m[43m_array_api[49m[38;5;241;43m.[39;49m[43msupported_float_dtypes[49m[43m([49m[43mxp[49m[43m)[49m[43m,[49m
-[0;32m    538[0m [43m    [49m[43mforce_all_finite[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mallow-nan[39;49m[38;5;124;43m"[39;49m[43m,[49m
-[0;32m    539[0m [43m    [49m[43mreset[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m
-[0;32m    540[0m [43m[49m[43m)[49m
-[0;32m    542[0m X [38;5;241m*[39m[38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mscale_
-[0;32m    543[0m X [38;5;241m+[39m[38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mmin_
-
-File [1;32m~\.conda\envs\book\Lib\site-packages\sklearn\base.py:654[0m, in [0;36mBaseEstimator._validate_data[1;34m(self, X, y, reset, validate_separately, cast_to_ndarray, **check_params)[0m
-[0;32m    651[0m     out [38;5;241m=[39m X, y
-[0;32m    653[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m no_val_X [38;5;129;01mand[39;00m check_params[38;5;241m.[39mget([38;5;124m"[39m[38;5;124mensure_2d[39m[38;5;124m"[39m, [38;5;28;01mTrue[39;00m):
-[1;32m--> 654[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_check_n_features[49m[43m([49m[43mX[49m[43m,[49m[43m [49m[43mreset[49m[38;5;241;43m=[39;49m[43mreset[49m[43m)[49m
-[0;32m    656[0m [38;5;28;01mreturn[39;00m out
-
-File [1;32m~\.conda\envs\book\Lib\site-packages\sklearn\base.py:443[0m, in [0;36mBaseEstimator._check_n_features[1;34m(self, X, reset)[0m
-[0;32m    440[0m     [38;5;28;01mreturn[39;00m
-[0;32m    442[0m [38;5;28;01mif[39;00m n_features [38;5;241m!=[39m [38;5;28mself[39m[38;5;241m.[39mn_features_in_:
-[1;32m--> 443[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
-[0;32m    444[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;124mX has [39m[38;5;132;01m{[39;00mn_features[38;5;132;01m}[39;00m[38;5;124m features, but [39m[38;5;132;01m{[39;00m[38;5;28mself[39m[38;5;241m.[39m[38;5;18m__class__[39m[38;5;241m.[39m[38;5;18m__name__[39m[38;5;132;01m}[39;00m[38;5;124m [39m[38;5;124m"[39m
-[0;32m    445[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;124mis expecting [39m[38;5;132;01m{[39;00m[38;5;28mself[39m[38;5;241m.[39mn_features_in_[38;5;132;01m}[39;00m[38;5;124m features as input.[39m[38;5;124m"[39m
-[0;32m    446[0m     )
-
-[1;31mValueError[0m: X has 1 features, but MinMaxScaler is expecting 5 features as input.
+[1;31mNameError[0m: name 'spectra' is not defined
 

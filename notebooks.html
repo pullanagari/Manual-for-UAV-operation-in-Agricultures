@@ -185,6 +185,7 @@
 
 
 
+
 </ul>
 
     </div>
@@ -401,6 +402,9 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-pipelines-for-hyperspectral-data-hsi">4. Data processing pipelines for hyperspectral data (HSI)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-raw-data-and-relevant-metdata-information">Importing raw data and relevant metdata information</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-raw-hyperspectral-data-to-radiance-radiometric-correction-calibration">4.1. Converting Raw hyperspectral data to Radiance (Radiometric correction/calibration)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-darkcurrent-of-the-sensor">Reading Darkcurrent of the sensor</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-radiance-hyperspectral-data-to-reflectance-atmospheric-correction-calibration">4.2. Converting Radiance hyperspectral data to Reflectance (Atmospheric correction/calibration)</a></li>
 </ul>
 </li>
@@ -796,11 +800,11 @@ Generally three methods are followed these effects.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_33280\251264815.py:22: RuntimeWarning: invalid value encountered in sqrt
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_25148\251264815.py:22: RuntimeWarning: invalid value encountered in sqrt
   MSAVI2 = 0.5 * (2 * nir.astype(float) + 1 - np.sqrt(2 * nir.astype(float) + 1) * 2 - 8*(nir.astype(float) - red.astype(float)))
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_33280\251264815.py:25: RuntimeWarning: divide by zero encountered in divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_25148\251264815.py:25: RuntimeWarning: divide by zero encountered in divide
   ARVI = (nir.astype(float) + blue.astype(float))/(nir.astype(float) - blue.astype(float))
 </pre></div>
 </div>
@@ -980,7 +984,10 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 <h2>4.1. Converting Raw hyperspectral data to Radiance (Radiometric correction/calibration)<a class="headerlink" href="#converting-raw-hyperspectral-data-to-radiance-radiometric-correction-calibration" title="Link to this heading">#</a></h2>
 <p>The radiometric correction process consists of the conversion of incident photons into light intensity (radiance). This process typically involves collecting dark current (DC) and substracting from the measured DN. and thereafter the values were interpretated with raditiometric coefficients values using the above formula.</p>
 <p>The radiometric coefficients generally supplied by the manfacturers who calibrates an individual sensor in a calibrated integrating sphere associated with tracebale light source.</p>
-<img src='integrating sphere.png' width="400" height="400">
+<img src='integrating sphere.png' width="400" height="400"></section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="reading-darkcurrent-of-the-sensor">
+<h1>Reading Darkcurrent of the sensor<a class="headerlink" href="#reading-darkcurrent-of-the-sensor" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DN_array</span><span class="o">=</span> <span class="n">DN_array</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
@@ -1041,7 +1048,6 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 <img alt="_images/eae166064f6142766d0280bcc4eea1cc7649b22bcd81727577e6874bf3768dc7.png" src="_images/eae166064f6142766d0280bcc4eea1cc7649b22bcd81727577e6874bf3768dc7.png" />
 </div>
 </div>
-</section>
 <section id="converting-radiance-hyperspectral-data-to-reflectance-atmospheric-correction-calibration">
 <h2>4.2. Converting Radiance hyperspectral data to Reflectance (Atmospheric correction/calibration)<a class="headerlink" href="#converting-radiance-hyperspectral-data-to-reflectance-atmospheric-correction-calibration" title="Link to this heading">#</a></h2>
 <p>ELM (Empirical Line Method) offers a straightforward method for rectifying imagery data by establishing an empirical correlation between known ground targets’ reflectance factors and the observed radiance values. During aerial surveys, reference targets with near lambertian properties are commonly employed for empirical line calculations. These targets have their reflectance properties measured using a spectroradiometer.</p>
@@ -1057,6 +1063,7 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 <span class="c1"># Reading raw data</span>
 <span class="n">Radiance_array</span> <span class="o">=</span> <span class="p">(</span><span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;hsi_data/img_radiance.dat&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 <span class="n">Radiance_array</span><span class="o">=</span><span class="n">Radiance_array</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">n_bands</span> <span class="o">=</span> <span class="n">Radiance_array</span><span class="o">.</span><span class="n">shape</span> 
 </pre></div>
 </div>
 </div>
@@ -1080,6 +1087,19 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
     <span class="n">pLow</span><span class="p">,</span> <span class="n">pHigh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">rgb</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">rgb</span><span class="p">)],</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">95</span><span class="p">))</span>
     <span class="n">rgb</span> <span class="o">=</span> <span class="n">exposure</span><span class="o">.</span><span class="n">rescale_intensity</span><span class="p">(</span><span class="n">rgb</span><span class="p">,</span> <span class="n">in_range</span><span class="o">=</span><span class="p">(</span><span class="n">pLow</span><span class="p">,</span><span class="n">pHigh</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">rgb</span>
+<span class="k">def</span> <span class="nf">extract_spectra</span><span class="p">(</span><span class="n">cube</span><span class="p">):</span>
+    <span class="c1"># Calculate t0</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">cube</span><span class="p">[</span><span class="mi">70</span><span class="p">:</span><span class="mi">90</span><span class="p">,</span> <span class="mi">150</span><span class="p">:</span><span class="mi">190</span><span class="p">,</span> <span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">spectra</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">t0</span><span class="p">)</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">cube</span><span class="p">[</span><span class="mi">140</span><span class="p">:</span><span class="mi">170</span><span class="p">,</span> <span class="mi">150</span><span class="p">:</span><span class="mi">190</span><span class="p">,</span> <span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">spectra</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">t1</span>
+    <span class="n">t2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">cube</span><span class="p">[</span><span class="mi">195</span><span class="p">:</span><span class="mi">225</span><span class="p">,</span> <span class="mi">150</span><span class="p">:</span><span class="mi">190</span><span class="p">,</span> <span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">spectra</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">t2</span>
+    <span class="n">t3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">cube</span><span class="p">[</span><span class="mi">270</span><span class="p">:</span><span class="mi">285</span><span class="p">,</span> <span class="mi">145</span><span class="p">:</span><span class="mi">155</span><span class="p">,</span> <span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">spectra</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">t3</span>
+    <span class="n">t4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">cube</span><span class="p">[</span><span class="mi">345</span><span class="p">:</span><span class="mi">365</span><span class="p">,</span> <span class="mi">145</span><span class="p">:</span><span class="mi">155</span><span class="p">,</span> <span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">spectra</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">t4</span>
+    <span class="k">return</span> <span class="n">spectra</span>
 </pre></div>
 </div>
 </div>
@@ -1099,18 +1119,9 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 <span class="c1"># ax1 = fig.add_subplot(gs[0, 1])</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.50</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
 
-<span class="n">t0</span><span class="o">=</span><span class="n">Radiance_array</span><span class="p">[</span><span class="mi">70</span><span class="p">:</span><span class="mi">90</span><span class="p">,</span><span class="mi">150</span><span class="p">:</span><span class="mi">190</span><span class="p">,:]</span>
-<span class="n">t0</span><span class="o">=</span><span class="n">t0</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">tarps_radiance</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">t0</span><span class="p">)</span>
-<span class="n">t1</span><span class="o">=</span><span class="n">Radiance_array</span><span class="p">[</span><span class="mi">140</span><span class="p">:</span><span class="mi">170</span><span class="p">,</span><span class="mi">150</span><span class="p">:</span><span class="mi">190</span><span class="p">,:]</span>
-<span class="n">tarps_radiance</span><span class="p">[</span><span class="mi">1</span><span class="p">,]</span><span class="o">=</span><span class="n">t1</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">t2</span><span class="o">=</span><span class="n">Radiance_array</span><span class="p">[</span><span class="mi">195</span><span class="p">:</span><span class="mi">225</span><span class="p">,</span><span class="mi">150</span><span class="p">:</span><span class="mi">190</span><span class="p">,:]</span>
-<span class="n">tarps_radiance</span><span class="p">[</span><span class="mi">2</span><span class="p">,]</span><span class="o">=</span><span class="n">t2</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">t3</span><span class="o">=</span><span class="n">Radiance_array</span><span class="p">[</span><span class="mi">270</span><span class="p">:</span><span class="mi">285</span><span class="p">,</span><span class="mi">145</span><span class="p">:</span><span class="mi">155</span><span class="p">,:]</span>
-<span class="n">tarps_radiance</span><span class="p">[</span><span class="mi">3</span><span class="p">,]</span><span class="o">=</span><span class="n">t3</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">t4</span><span class="o">=</span><span class="n">Radiance_array</span><span class="p">[</span><span class="mi">345</span><span class="p">:</span><span class="mi">365</span><span class="p">,</span><span class="mi">145</span><span class="p">:</span><span class="mi">155</span><span class="p">,:]</span>
-<span class="n">tarps_radiance</span><span class="p">[</span><span class="mi">4</span><span class="p">,]</span><span class="o">=</span><span class="n">t4</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span><span class="n">tarps_radiance</span><span class="p">)</span>
+<span class="c1"># plotting</span>
+<span class="n">tarps_radiance</span><span class="o">=</span><span class="n">extract_spectra</span><span class="p">(</span><span class="n">Radiance_array</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span><span class="n">spectra</span><span class="p">)</span>
 <span class="c1"># ax1.set_xticks(ax1.get_xticks()[::25])</span>
 <span class="c1"># ax1.tick_params(axis=&#39;x&#39;, labelrotation=45)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Radiance (Watts/m2/sr/nm)&#39;</span><span class="p">)</span>
@@ -1119,10 +1130,20 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Radiance Spectra&#39;)
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">16</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="c1"># plotting</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="n">tarps_radiance</span><span class="o">=</span><span class="n">extract_spectra</span><span class="p">(</span><span class="n">Radiance_array</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">16</span> <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span><span class="n">spectra</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="c1"># ax1.set_xticks(ax1.get_xticks()[::25])</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="c1"># ax1.tick_params(axis=&#39;x&#39;, labelrotation=45)</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Radiance (Watts/m2/sr/nm)&#39;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;spectra&#39; is not defined
 </pre></div>
 </div>
-<img alt="_images/075c71f4e42197d9418578629df9307391b176b3989436a2e5ed79efc9f548e1.png" src="_images/075c71f4e42197d9418578629df9307391b176b3989436a2e5ed79efc9f548e1.png" />
+<img alt="_images/85b6903a40f861aa962bc3d7ecd95e0c9e32561bd8fd694dc78847bcda924968.png" src="_images/85b6903a40f861aa962bc3d7ecd95e0c9e32561bd8fd694dc78847bcda924968.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1147,139 +1168,21 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
-<span class="c1"># scaler = MinMaxScaler(feature_range=(0,1))</span>
-<span class="c1"># scaler = MinMaxScaler(feature_range=(0,1))</span>
-<span class="n">gt2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">gt1</span><span class="p">)</span>
-<span class="c1"># tarps=scaler.fit(tarps_radiance)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gt2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">gt1</span><span class="p">)</span>
 <span class="n">tarps</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">tarps_radiance</span><span class="p">)</span>
-<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-
-<span class="n">ss</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">tt</span><span class="o">=</span><span class="p">[]</span>
-<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">273</span><span class="p">):</span>
-    <span class="n">ss</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tarps</span><span class="p">[</span><span class="n">k</span><span class="p">,:],(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
-    <span class="n">tt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ss</span><span class="p">)</span> 
-<span class="n">tm</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span>
-<span class="c1"># tm=np.reshape(tm,(273,5))</span>
-<span class="c1"># tarps=scaler.fit(tarps)</span>
 <span class="n">models</span><span class="o">=</span><span class="p">[]</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">273</span><span class="p">):</span>
-    <span class="c1"># model = LinearRegression().fit([tarps_radiance.iloc[i,:]], [gt1.iloc[i,:]])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_bands</span><span class="p">):</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tarps</span><span class="p">[</span><span class="n">i</span><span class="p">,:],(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">gt2</span><span class="p">[</span><span class="n">i</span><span class="p">,:],(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
     <span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">model</span><span class="o">.</span><span class="n">intercept_</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 <span class="n">score</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">models</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">n_bands</span> <span class="o">=</span> <span class="n">Radiance_array</span><span class="o">.</span><span class="n">shape</span> 
-<span class="n">r1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Radiance_array</span><span class="p">,</span> <span class="p">(</span><span class="n">rows</span> <span class="o">*</span> <span class="n">cols</span><span class="p">,</span> <span class="n">n_bands</span><span class="p">))</span>
-<span class="c1"># r1[r1==np.inf]=np.nan</span>
-<span class="c1"># r1 = np.nan_to_num(r1)</span>
-
 <span class="n">ff</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">r2</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">r3</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">rows</span> <span class="o">*</span> <span class="n">cols</span><span class="p">):</span>
-    <span class="n">r2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">r1</span><span class="p">[</span><span class="n">j</span><span class="p">,:],(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">r2</span><span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">r2</span><span class="p">)</span>
-<span class="c1">#     r3.append(r2)</span>
-<span class="c1"># r4=np.asarray(r3)</span>
-<span class="c1"># r4=r4.reshape(rows*cols,n_bands)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">14</span><span class="p">],</span> <span class="n">line</span> <span class="mi">12</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">rows</span> <span class="o">*</span> <span class="n">cols</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="n">r2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">r1</span><span class="p">[</span><span class="n">j</span><span class="p">,:],(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-<span class="ne">---&gt; </span><span class="mi">12</span>     <span class="n">r2</span><span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">r2</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1">#     r3.append(r2)</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="c1"># r4=np.asarray(r3)</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="c1"># r4=r4.reshape(rows*cols,n_bands)</span>
-
-<span class="nn">File ~\.conda\envs\book\Lib\site-packages\sklearn\utils\_set_output.py:295,</span> in <span class="ni">_wrap_method_output.&lt;locals&gt;.wrapped</span><span class="nt">(self, X, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">293</span> <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">294</span> <span class="k">def</span> <span class="nf">wrapped</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">295</span>     <span class="n">data_to_wrap</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">296</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data_to_wrap</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">297</span>         <span class="c1"># only wrap the first output for cross decomposition</span>
-<span class="g g-Whitespace">    </span><span class="mi">298</span>         <span class="n">return_tuple</span> <span class="o">=</span> <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">299</span>             <span class="n">_wrap_data_with_container</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">data_to_wrap</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">300</span>             <span class="o">*</span><span class="n">data_to_wrap</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
-<span class="g g-Whitespace">    </span><span class="mi">301</span>         <span class="p">)</span>
-
-<span class="nn">File ~\.conda\envs\book\Lib\site-packages\sklearn\preprocessing\_data.py:534,</span> in <span class="ni">MinMaxScaler.transform</span><span class="nt">(self, X)</span>
-<span class="g g-Whitespace">    </span><span class="mi">530</span> <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">532</span> <span class="n">xp</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_namespace</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">534</span> <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">535</span>     <span class="n">X</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">536</span>     <span class="n">copy</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">537</span>     <span class="n">dtype</span><span class="o">=</span><span class="n">_array_api</span><span class="o">.</span><span class="n">supported_float_dtypes</span><span class="p">(</span><span class="n">xp</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">538</span>     <span class="n">force_all_finite</span><span class="o">=</span><span class="s2">&quot;allow-nan&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">539</span>     <span class="n">reset</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">540</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">542</span> <span class="n">X</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_</span>
-<span class="g g-Whitespace">    </span><span class="mi">543</span> <span class="n">X</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_</span>
-
-<span class="nn">File ~\.conda\envs\book\Lib\site-packages\sklearn\base.py:654,</span> in <span class="ni">BaseEstimator._validate_data</span><span class="nt">(self, X, y, reset, validate_separately, cast_to_ndarray, **check_params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">651</span>     <span class="n">out</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
-<span class="g g-Whitespace">    </span><span class="mi">653</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">no_val_X</span> <span class="ow">and</span> <span class="n">check_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ensure_2d&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">654</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_check_n_features</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="n">reset</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">656</span> <span class="k">return</span> <span class="n">out</span>
-
-<span class="nn">File ~\.conda\envs\book\Lib\site-packages\sklearn\base.py:443,</span> in <span class="ni">BaseEstimator._check_n_features</span><span class="nt">(self, X, reset)</span>
-<span class="g g-Whitespace">    </span><span class="mi">440</span>     <span class="k">return</span>
-<span class="g g-Whitespace">    </span><span class="mi">442</span> <span class="k">if</span> <span class="n">n_features</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features_in_</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">443</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">444</span>         <span class="sa">f</span><span class="s2">&quot;X has </span><span class="si">{</span><span class="n">n_features</span><span class="si">}</span><span class="s2"> features, but </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">445</span>         <span class="sa">f</span><span class="s2">&quot;is expecting </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_features_in_</span><span class="si">}</span><span class="s2"> features as input.&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">446</span>     <span class="p">)</span>
-
-<span class="ne">ValueError</span>: X has 1 features, but MinMaxScaler is expecting 5 features as input.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ff</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">r1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Radiance_array</span><span class="p">,</span> <span class="p">(</span><span class="n">rows</span> <span class="o">*</span> <span class="n">cols</span><span class="p">,</span> <span class="n">n_bands</span><span class="p">))</span>
 <span class="n">output</span><span class="o">=</span><span class="p">[]</span>
 <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">rows</span> <span class="o">*</span> <span class="n">cols</span><span class="p">):</span>
-    <span class="n">ff</span><span class="o">=</span><span class="n">score</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">r1</span><span class="p">[</span><span class="n">j</span><span class="p">,:]</span><span class="o">*</span><span class="n">score</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">ff</span><span class="o">=</span><span class="n">score</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">r1</span><span class="p">[</span><span class="n">j</span><span class="p">,:]</span><span class="o">*</span><span class="n">score</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ff</span><span class="p">)</span>
-<span class="n">aa</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-<span class="n">ab</span><span class="o">=</span><span class="n">aa</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="p">,</span><span class="n">n_bands</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ab</span><span class="p">[:,:,</span><span class="mi">100</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1b966f6ff50&gt;
-</pre></div>
-</div>
-<img alt="_images/e83fe8cb2d778ebb4dd6fefc96c7341a7eb51b26888b00e30a4acf00d73bdf5b.png" src="_images/e83fe8cb2d778ebb4dd6fefc96c7341a7eb51b26888b00e30a4acf00d73bdf5b.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ff</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">output</span><span class="o">=</span><span class="p">[]</span>
-<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">rows</span> <span class="o">*</span> <span class="n">cols</span><span class="p">):</span>
-    <span class="n">ff</span><span class="o">=</span><span class="n">score</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">r1</span><span class="p">[</span><span class="n">j</span><span class="p">,:]</span><span class="o">*</span><span class="n">score</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ff</span><span class="p">)</span>
-<span class="n">aa</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-<span class="n">ab</span><span class="o">=</span><span class="n">aa</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="p">,</span><span class="n">n_bands</span><span class="p">)</span>
-<span class="c1"># plt.imshow(ab[:,:,100])</span>
+<span class="n">output</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="p">,</span><span class="n">n_bands</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1288,39 +1191,24 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
 <span class="n">gs</span> <span class="o">=</span> <span class="n">GridSpec</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-
 <span class="n">ax0</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
 <span class="n">ax0</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rgb</span><span class="p">(</span><span class="n">ab</span><span class="p">))</span>
-
-
-<span class="c1"># ax1 = plt.axes([0.50, 0.45, 0.5, 0.3])</span>
-
-<span class="c1"># t0=ab[70:90,150:190,:]</span>
-<span class="c1"># t0=t0.mean(axis=(0, 1))</span>
-<span class="c1"># Ref_spectra=pd.DataFrame(t0)</span>
-<span class="c1"># t1=ab[140:170,150:190,:]</span>
-<span class="c1"># Ref_spectra[1,]=t1.mean(axis=(0, 1))</span>
-<span class="c1"># t2=ab[195:225,150:190,:]</span>
-<span class="c1"># Ref_spectra[2,]=t2.mean(axis=(0, 1))</span>
-<span class="c1"># t3=ab[270:285,145:155,:]</span>
-
-<span class="c1"># Ref_spectra[3,]=t3.mean(axis=(0, 1)</span>
-                        
-<span class="c1"># t4=ab[345:365,145:155,:]</span>
-<span class="c1"># Ref_spectra[4,]=t4.mean(axis=(0, 1))</span>
-<span class="c1"># ax1.plot(wavelengths,Ref_spectra)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.50</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
+<span class="n">ref_spectra</span><span class="o">=</span><span class="n">extract_spectra</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span><span class="n">ref_spectra</span><span class="p">)</span>
 <span class="c1"># ax1.set_xticks(ax1.get_xticks()[::25])</span>
-<span class="c1"># ax1.tick_params(axis=&#39;x&#39;, labelrotation=45)</span>
-<span class="c1"># plt.ylabel(&#39;Radiance (Watts/m2/sr/nm)&#39;)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Reflectance Image&#39;</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">labelrotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Reflectance&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Reflectance spectra&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Reflectance Image&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Reflectance spectra&#39;)
 </pre></div>
 </div>
-<img alt="_images/c46cccc879f45cd8b98248ddb04ca5bd2392b4f7e720646ef24233e6b34aeb06.png" src="_images/c46cccc879f45cd8b98248ddb04ca5bd2392b4f7e720646ef24233e6b34aeb06.png" />
+<img alt="_images/21762769eb902e0279ec92170b282baf4c9911cabac69146a41fdd4252c15757.png" src="_images/21762769eb902e0279ec92170b282baf4c9911cabac69146a41fdd4252c15757.png" />
 </div>
 </div>
 </section>
@@ -1402,6 +1290,9 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-pipelines-for-hyperspectral-data-hsi">4. Data processing pipelines for hyperspectral data (HSI)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-raw-data-and-relevant-metdata-information">Importing raw data and relevant metdata information</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-raw-hyperspectral-data-to-radiance-radiometric-correction-calibration">4.1. Converting Raw hyperspectral data to Radiance (Radiometric correction/calibration)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-darkcurrent-of-the-sensor">Reading Darkcurrent of the sensor</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-radiance-hyperspectral-data-to-reflectance-atmospheric-correction-calibration">4.2. Converting Radiance hyperspectral data to Reflectance (Atmospheric correction/calibration)</a></li>
 </ul>
 </li>
