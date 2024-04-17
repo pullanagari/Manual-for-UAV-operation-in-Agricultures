@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -800,11 +800,11 @@ Generally three methods are followed these effects.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_22608\251264815.py:22: RuntimeWarning: invalid value encountered in sqrt
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_3924\251264815.py:22: RuntimeWarning: invalid value encountered in sqrt
   MSAVI2 = 0.5 * (2 * nir.astype(float) + 1 - np.sqrt(2 * nir.astype(float) + 1) * 2 - 8*(nir.astype(float) - red.astype(float)))
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_22608\251264815.py:25: RuntimeWarning: divide by zero encountered in divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_3924\251264815.py:25: RuntimeWarning: divide by zero encountered in divide
   ARVI = (nir.astype(float) + blue.astype(float))/(nir.astype(float) - blue.astype(float))
 </pre></div>
 </div>
@@ -984,7 +984,8 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 <h2>4.1. Converting Raw hyperspectral data to Radiance (Radiometric correction/calibration)<a class="headerlink" href="#converting-raw-hyperspectral-data-to-radiance-radiometric-correction-calibration" title="Link to this heading">#</a></h2>
 <p>The radiometric correction process consists of the conversion of incident photons into light intensity (radiance). This process typically involves collecting dark current (DC) and substracting from the measured DN. and thereafter the values were interpretated with raditiometric coefficients values using the above formula.</p>
 <p>The radiometric coefficients generally supplied by the manfacturers who calibrates an individual sensor in a calibrated integrating sphere associated with tracebale light source.</p>
-<img src='integrating sphere.png' width="400" height="400"></section>
+<img src='integrating sphere.jpeg' width="400" height="400">
+</section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="reading-darkcurrent-of-the-sensor">
 <h1>Reading Darkcurrent of the sensor<a class="headerlink" href="#reading-darkcurrent-of-the-sensor" title="Link to this heading">#</a></h1>
