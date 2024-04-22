@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -57,8 +57,6 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -179,7 +177,6 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Introduction</a></li>
-
 
 
 
@@ -401,10 +398,10 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-ndvi-values-of-individual-plots">Extracting NDVI values of individual plots</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-pipelines-for-hyperspectral-data-hsi">4. Data processing pipelines for hyperspectral data (HSI)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-raw-data-and-relevant-metdata-information">Importing raw data and relevant metdata information</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-raw-hyperspectral-data-to-radiance-radiometric-correction-calibration">4.1. Converting Raw hyperspectral data to Radiance (Radiometric correction/calibration)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-raw-hyperspectral-data-to-radiance-radiometric-correction-calibration">4.1. Converting Raw hyperspectral data to Radiance (Radiometric correction/calibration)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-darkcurrent-of-the-sensor">Reading Darkcurrent of the sensor</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-darkcurrent-of-the-sensor">Reading Darkcurrent of the sensor</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-radiance-hyperspectral-data-to-reflectance-atmospheric-correction-calibration">4.2. Converting Radiance hyperspectral data to Reflectance (Atmospheric correction/calibration)</a></li>
 </ul>
 </li>
@@ -421,11 +418,11 @@ document.write(`
                 <article class="bd-article">
                   
   <!-- ![](logo.jpeg) -->
-<section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<section id="introduction">
 <h1>1. Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
 <p>Continuous advancements in Unmanned Aerial Vehicle (UAV) technology have broadened its applications in agriculture. These innovations play a crucial role in fostering sustainable solutions and influencing policies and decisions in agriculture. However, the regulatory framework for UAV flights and the development of standardized protocols for precise data capture are continuously evolving. It is imperative to uphold accurate data quality for synergizing multiyear data and other spectral sensors (satellites, drones, field and lab sensors). To maintain high standards, some essential steps were proposed.</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="pre-planning">
+<section id="pre-planning">
 <h1>2. Pre planning<a class="headerlink" href="#pre-planning" title="Link to this heading">#</a></h1>
 <section id="flight-planning">
 <h2>2.1. Flight planning<a class="headerlink" href="#flight-planning" title="Link to this heading">#</a></h2>
@@ -478,12 +475,12 @@ Although many of of UAV flights can withstand 35-50 km/hr winds, flying over 20k
 <p><strong>Sun photometer</strong> for measuring aerosol optical thickness.</p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="data-management">
+<section id="data-management">
 <h1>3. Data management<a class="headerlink" href="#data-management" title="Link to this heading">#</a></h1>
 <p>After the drone flight, cross checking is performed to ensure detailed metadata is recorded, and data is stored in an appropriately. Effective data management is crucial for subsequent analysis. The required metadata information is presented in Table 1.</p>
 <p>Visual evaluation of images is necessary to identify undesirable aspects such as blurry images (RGB), illumination variations, and naming issues.</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="data-processing-piepleines">
+<section id="data-processing-piepleines">
 <h1>4. Data processing piepleines<a class="headerlink" href="#data-processing-piepleines" title="Link to this heading">#</a></h1>
 <p>The radiometric response of optical sensors/ remote sensing imagery play critical role in obtaining quantitative spectral infromation. Typically, the data from the spectral sensors can be delivered as digital numbers, radiance, and reflectance.</p>
 <ul class="simple">
@@ -715,10 +712,9 @@ Radiometric resolution indciates the sensor sensitivity to detect minor energy d
 <section id="converting-digital-numbers-to-radiance">
 <h2>4.1. Converting Digital numbers to Radiance<a class="headerlink" href="#converting-digital-numbers-to-radiance" title="Link to this heading">#</a></h2>
 <p>Radiance The DN converted to at-sensor radiance using the a gain and offset values per each band, this process also called as radiometric calibration. The gain and offset values generally supplied from teh sensor manufactrer, if not the values can be retrieved using an integrating sphere. The radiance units are Watts/m2/sr/nm</p>
-<div class="math notranslate nohighlight">
-\[
+<p>$$
 L_{band} = DN * Gain_{band} + Offset_{band}
-\]</div>
+$$</p>
 <p>where:</p>
 <ul class="simple">
 <li><p>L_band = spectral radaince c(watts/m2/steradian/nm)</p></li>
@@ -800,11 +796,11 @@ Generally three methods are followed these effects.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_3924\251264815.py:22: RuntimeWarning: invalid value encountered in sqrt
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_13396\251264815.py:22: RuntimeWarning: invalid value encountered in sqrt
   MSAVI2 = 0.5 * (2 * nir.astype(float) + 1 - np.sqrt(2 * nir.astype(float) + 1) * 2 - 8*(nir.astype(float) - red.astype(float)))
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_3924\251264815.py:25: RuntimeWarning: divide by zero encountered in divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_13396\251264815.py:25: RuntimeWarning: divide by zero encountered in divide
   ARVI = (nir.astype(float) + blue.astype(float))/(nir.astype(float) - blue.astype(float))
 </pre></div>
 </div>
@@ -812,7 +808,7 @@ Generally three methods are followed these effects.</p>
 </div>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="visualise-the-plots-on-a-raster">
+<section id="visualise-the-plots-on-a-raster">
 <h1>Visualise the plots on a raster<a class="headerlink" href="#visualise-the-plots-on-a-raster" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -831,7 +827,7 @@ Generally three methods are followed these effects.</p>
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="extracting-ndvi-values-of-individual-plots">
+<section id="extracting-ndvi-values-of-individual-plots">
 <h1>Extracting NDVI values of individual plots<a class="headerlink" href="#extracting-ndvi-values-of-individual-plots" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -867,10 +863,8 @@ Generally three methods are followed these effects.</p>
 </div>
 <p>Remote sensing data infleunced by noise and uncertainty caused by atmoshpehre, solar and viewing geometry, variable illumination by clouds and haze, terrain.</p>
 <p>The atmsopheric effects are computed based on simulated physically based radiation transfer model and the relevant atmsphere condictions. In this atmsophere properties were charecterised using radiave transfer code such as MODTRAN and 6S.</p>
-<p>There is a lot more that you can do with outputs (such as including interactive outputs)
-with your book. For more information about this, see <a class="reference external" href="https://jupyterbook.org">the Jupyter Book documentation</a></p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="data-processing-pipelines-for-hyperspectral-data-hsi">
+<section id="data-processing-pipelines-for-hyperspectral-data-hsi">
 <h1>4. Data processing pipelines for hyperspectral data (HSI)<a class="headerlink" href="#data-processing-pipelines-for-hyperspectral-data-hsi" title="Link to this heading">#</a></h1>
 <p>Compared to Multispectral data, the pipelines for hyperspectral data is slightly different due to the sensor mechanical design.
 Push-broom design based sensors typically used in hyperspectral scanning which acquires images line-by-line, in which the spatial infromation is displayed along x and y-axis and the wavelength information on z-axis. As the sensor platform move forward, the sensor continuosly captures the data cube in a strip format.</p>
@@ -983,12 +977,13 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 <section id="converting-raw-hyperspectral-data-to-radiance-radiometric-correction-calibration">
 <h2>4.1. Converting Raw hyperspectral data to Radiance (Radiometric correction/calibration)<a class="headerlink" href="#converting-raw-hyperspectral-data-to-radiance-radiometric-correction-calibration" title="Link to this heading">#</a></h2>
 <p>The radiometric correction process consists of the conversion of incident photons into light intensity (radiance). This process typically involves collecting dark current (DC) and substracting from the measured DN. and thereafter the values were interpretated with raditiometric coefficients values using the above formula.</p>
-<p>The radiometric coefficients generally supplied by the manfacturers who calibrates an individual sensor in a calibrated integrating sphere associated with tracebale light source.</p>
-<img src='integrating sphere.jpeg' width="400" height="400">
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="reading-darkcurrent-of-the-sensor">
-<h1>Reading Darkcurrent of the sensor<a class="headerlink" href="#reading-darkcurrent-of-the-sensor" title="Link to this heading">#</a></h1>
+<p>The radiometric coefficients generally supplied by the manfacturers who calibrates an individual sensor in a calibrated integrating sphere (Labshpere, USA) associated with tracebale light source. Althpugh the process is extesive, it is ideal to conduct the clibration every year to verify the functionality of the sensor and ensures right measurements.</p>
+<!-- <img src='images/integrating_sphere.png' width="300" height="200"> -->
+<!-- HTML('<img src="images/integrating_sphere.png" width="400"/>')-->
+<!-- <img src="../images/integrating_sphere.png" alt="fishy" class="bg-primary" width="200px"> -->
+<img alt="_images/integrating_sphere.png" src="_images/integrating_sphere.png" />
+<section id="reading-darkcurrent-of-the-sensor">
+<h3>Reading Darkcurrent of the sensor<a class="headerlink" href="#reading-darkcurrent-of-the-sensor" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DN_array</span><span class="o">=</span> <span class="n">DN_array</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
@@ -1049,6 +1044,8 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 <img alt="_images/eae166064f6142766d0280bcc4eea1cc7649b22bcd81727577e6874bf3768dc7.png" src="_images/eae166064f6142766d0280bcc4eea1cc7649b22bcd81727577e6874bf3768dc7.png" />
 </div>
 </div>
+</section>
+</section>
 <section id="converting-radiance-hyperspectral-data-to-reflectance-atmospheric-correction-calibration">
 <h2>4.2. Converting Radiance hyperspectral data to Reflectance (Atmospheric correction/calibration)<a class="headerlink" href="#converting-radiance-hyperspectral-data-to-reflectance-atmospheric-correction-calibration" title="Link to this heading">#</a></h2>
 <p>ELM (Empirical Line Method) offers a straightforward method for rectifying imagery data by establishing an empirical correlation between known ground targets’ reflectance factors and the observed radiance values. During aerial surveys, reference targets with near lambertian properties are commonly employed for empirical line calculations. These targets have their reflectance properties measured using a spectroradiometer.</p>
@@ -1122,7 +1119,7 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 
 <span class="c1"># plotting</span>
 <span class="n">tarps_radiance</span><span class="o">=</span><span class="n">extract_spectra</span><span class="p">(</span><span class="n">Radiance_array</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span><span class="n">spectra</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span><span class="n">tarps_radiance</span><span class="p">)</span>
 <span class="c1"># ax1.set_xticks(ax1.get_xticks()[::25])</span>
 <span class="c1"># ax1.tick_params(axis=&#39;x&#39;, labelrotation=45)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Radiance (Watts/m2/sr/nm)&#39;</span><span class="p">)</span>
@@ -1131,20 +1128,10 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">16</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="c1"># plotting</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="n">tarps_radiance</span><span class="o">=</span><span class="n">extract_spectra</span><span class="p">(</span><span class="n">Radiance_array</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">16</span> <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span><span class="n">spectra</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="c1"># ax1.set_xticks(ax1.get_xticks()[::25])</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="c1"># ax1.tick_params(axis=&#39;x&#39;, labelrotation=45)</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Radiance (Watts/m2/sr/nm)&#39;</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;spectra&#39; is not defined
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Radiance Spectra&#39;)
 </pre></div>
 </div>
-<img alt="_images/85b6903a40f861aa962bc3d7ecd95e0c9e32561bd8fd694dc78847bcda924968.png" src="_images/85b6903a40f861aa962bc3d7ecd95e0c9e32561bd8fd694dc78847bcda924968.png" />
+<img alt="_images/075c71f4e42197d9418578629df9307391b176b3989436a2e5ed79efc9f548e1.png" src="_images/075c71f4e42197d9418578629df9307391b176b3989436a2e5ed79efc9f548e1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1169,7 +1156,8 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gt2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">gt1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="n">gt2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">gt1</span><span class="p">)</span>
 <span class="n">tarps</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">tarps_radiance</span><span class="p">)</span>
 <span class="n">models</span><span class="o">=</span><span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_bands</span><span class="p">):</span>
@@ -1193,7 +1181,7 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
 <span class="n">gs</span> <span class="o">=</span> <span class="n">GridSpec</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">ax0</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
-<span class="n">ax0</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rgb</span><span class="p">(</span><span class="n">ab</span><span class="p">))</span>
+<span class="n">ax0</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rgb</span><span class="p">(</span><span class="n">output</span><span class="p">))</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.50</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
 <span class="n">ref_spectra</span><span class="o">=</span><span class="n">extract_spectra</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span><span class="n">ref_spectra</span><span class="p">)</span>
@@ -1290,10 +1278,10 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-ndvi-values-of-individual-plots">Extracting NDVI values of individual plots</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-pipelines-for-hyperspectral-data-hsi">4. Data processing pipelines for hyperspectral data (HSI)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-raw-data-and-relevant-metdata-information">Importing raw data and relevant metdata information</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-raw-hyperspectral-data-to-radiance-radiometric-correction-calibration">4.1. Converting Raw hyperspectral data to Radiance (Radiometric correction/calibration)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-raw-hyperspectral-data-to-radiance-radiometric-correction-calibration">4.1. Converting Raw hyperspectral data to Radiance (Radiometric correction/calibration)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-darkcurrent-of-the-sensor">Reading Darkcurrent of the sensor</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-darkcurrent-of-the-sensor">Reading Darkcurrent of the sensor</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-radiance-hyperspectral-data-to-reflectance-atmospheric-correction-calibration">4.2. Converting Radiance hyperspectral data to Reflectance (Atmospheric correction/calibration)</a></li>
 </ul>
 </li>
