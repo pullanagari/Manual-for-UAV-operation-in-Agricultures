@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -42,7 +42,7 @@
   <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
@@ -177,8 +177,6 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Introduction</a></li>
-
-
 
 
 
@@ -389,20 +387,23 @@ document.write(`
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-management">3. Data management</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-piepleines">4. Data processing piepleines</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-digital-numbers-to-radiance">4.1. Converting Digital numbers to Radiance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiance-to-reflectance">4.2. Radiance to Reflectance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-vegetation-indices">4.3. Deriving vegetation indices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-digital-numbers-to-radiance-multispectral">4.1. Converting Digital numbers to Radiance (Multispectral)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiance-to-reflectance-multispectral">4.2. Radiance to Reflectance (Multispectral)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-vegetation-indices-multispectral">4.3. Deriving vegetation indices (Multispectral)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualise-the-plots-on-a-raster-multispectral">4.4. Visualise the plots on a raster (Multispectral)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-ndvi-values-of-individual-plots-multispectral">4.5. Extracting NDVI values of individual plots (Multispectral)</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualise-the-plots-on-a-raster">Visualise the plots on a raster</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-ndvi-values-of-individual-plots">Extracting NDVI values of individual plots</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-pipelines-for-hyperspectral-data-hsi">4. Data processing pipelines for hyperspectral data (HSI)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-pipelines-for-hyperspectral-data-hsi">5. Data processing pipelines for hyperspectral data (HSI)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-raw-data-and-relevant-metdata-information">Importing raw data and relevant metdata information</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-raw-hyperspectral-data-to-radiance-radiometric-correction-calibration">4.1. Converting Raw hyperspectral data to Radiance (Radiometric correction/calibration)</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-raw-hyperspectral-data-into-radiance-radiometric-correction-calibration">5.1. Converting Raw hyperspectral data into Radiance (Radiometric correction/calibration)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-darkcurrent-of-the-sensor">Reading Darkcurrent of the sensor</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-radiance-hyperspectral-data-to-reflectance-atmospheric-correction-calibration">4.2. Converting Radiance hyperspectral data to Reflectance (Atmospheric correction/calibration)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-radiance-hyperspectral-data-to-reflectance-atmospheric-correction-calibration">5.2. Converting Radiance hyperspectral data to Reflectance (Atmospheric correction/calibration)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-hyperspectral-vegetation-indices">5.3. Calculating Hyperspectral vegetation indices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-biophyscical-and-biochemical-components-using-prosail-model">5.4. Extracting biophyscical and biochemical components using PROSAIL model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-regression">5.5. Machine learning regression</a></li>
 </ul>
 </li>
 </ul>
@@ -497,220 +498,20 @@ Radiometric resolution indciates the sensor sensitivity to detect minor energy d
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">meta_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data/Meta_data.xlsx&#39;</span><span class="p">)</span> 
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">display</span><span class="p">(</span><span class="n">meta_data</span><span class="p">)</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Categories</th>
-      <th>Details</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>General meta information</td>
-      <td>•        Name</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>NaN</td>
-      <td>•        Data collection date</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>NaN</td>
-      <td>•        Location</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>NaN</td>
-      <td>•        Surveyor name</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>NaN</td>
-      <td>•        Data link</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>NaN</td>
-      <td>•        Brief summary from the field logbook</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>NaN</td>
-      <td>•        Survey Begin Time</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>NaN</td>
-      <td>•        Survey End time</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>NaN</td>
-      <td>•        Platform</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>NaN</td>
-      <td>•        Sensor</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>NaN</td>
-      <td>•        Sensor scanning principle.</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>NaN</td>
-      <td>•        Senor FOV (field of view)</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>NaN</td>
-      <td>•        Sensor IFOV (Instantaneous field of v...</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>NaN</td>
-      <td>•        Sensor radiometric calibration date</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>NaN</td>
-      <td>•        GPS/IMU type</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>NaN</td>
-      <td>•        GPS Ground control points (GCP)</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>NaN</td>
-      <td>•        Downwelling solar radiation available</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>NaN</td>
-      <td>•        Overall heading</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>NaN</td>
-      <td>•        Solar zenith during acquisition</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>NaN</td>
-      <td>•        Solar azimuth during acquisition</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>NaN</td>
-      <td>•        Cloud cover percentage</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>NaN</td>
-      <td>•        Number of rows in the survey</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>NaN</td>
-      <td>•        Data format</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Image meta information</td>
-      <td>•        Spatial resolution</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>NaN</td>
-      <td>•        Spectral resolution</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>NaN</td>
-      <td>•        Spectral range</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>NaN</td>
-      <td>•        Radiometric resolution</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>NaN</td>
-      <td>•        FWHM</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>NaN</td>
-      <td>•        Coordinates (ref/projected)</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>NaN</td>
-      <td>•        Image quality</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>NaN</td>
-      <td>•        Terrain condition</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>NaN</td>
-      <td>•        Solar and viewing geometry</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>Processing meta Information</td>
-      <td>•        Processing level*</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>NaN</td>
-      <td>•        Geometric correction type (algorithm)</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>NaN</td>
-      <td>•        Aerosol Optical Depth Parameters</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td>NaN</td>
-      <td>•        Atmosphere correction type (Empirical...</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>NaN</td>
-      <td>•        BRDF type</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
+</pre></div>
 </div>
-<section id="converting-digital-numbers-to-radiance">
-<h2>4.1. Converting Digital numbers to Radiance<a class="headerlink" href="#converting-digital-numbers-to-radiance" title="Link to this heading">#</a></h2>
+</div>
+</div>
+<section id="converting-digital-numbers-to-radiance-multispectral">
+<h2>4.1. Converting Digital numbers to Radiance (Multispectral)<a class="headerlink" href="#converting-digital-numbers-to-radiance-multispectral" title="Link to this heading">#</a></h2>
 <p>Radiance The DN converted to at-sensor radiance using the a gain and offset values per each band, this process also called as radiometric calibration. The gain and offset values generally supplied from teh sensor manufactrer, if not the values can be retrieved using an integrating sphere. The radiance units are Watts/m2/sr/nm</p>
 <p>$$
 L_{band} = DN * Gain_{band} + Offset_{band}
@@ -723,8 +524,8 @@ $$</p>
 <li><p>Offset = Intercept of the spectral band</p></li>
 </ul>
 </section>
-<section id="radiance-to-reflectance">
-<h2>4.2. Radiance to Reflectance<a class="headerlink" href="#radiance-to-reflectance" title="Link to this heading">#</a></h2>
+<section id="radiance-to-reflectance-multispectral">
+<h2>4.2. Radiance to Reflectance (Multispectral)<a class="headerlink" href="#radiance-to-reflectance-multispectral" title="Link to this heading">#</a></h2>
 <p>The portional of the light reflected from the object to the sensors relative to the incoming solar radiation. The reflectance measured in the range of 0-100% which depend on the properties of the reflected surface. Since the radiance values infleunced by various components (atmospheric and aerosol profile, and geometric factors) their interactions with radiation, conversion into wavelength dependent surface relfectance is essential to retrive phenological information.
 Generally three methods are followed these effects.</p>
 <ul class="simple">
@@ -736,8 +537,8 @@ Generally three methods are followed these effects.</p>
 <p>The process begins with acquiring raw multispectral images from the drone’s camera system. These images need to be calibrated and converted into reflectance maps, which represent the actual reflectance of the observed surfaces at different wavelengths. Additionally, the individual images must be stitched together to create a seamless mosaic of the surveyed area. This entire workflow can be facilitated by specialized photogrammetry software solutions, such as <a class="reference external" href="https://www.pix4d.com/">Pix4D</a>, <a class="reference external" href="https://www.agisoft.com/">Agisoft</a>, and ArcGIS <a class="reference external" href="https://esriaustralia.com.au/arcgis-drone2map">Drone2Map</a>. These softwares</p>
 <p>In the context of multispectral imagery, standard reference panels with known reflectance characteristics, typically a white panel (high reflectance) and a dark panel (low reflectance), are employed to determine the scale factor necessary for converting the raw image data into reflectance values. These reference panels are strategically placed within the survey area and are automatically detected by the photogrammetry software through the recognition of embedded QR codes or other identification markers. The software then uses the radiance values recorded for these panels to calculate the scale factor, which is subsequently applied to the entire image dataset, resulting in a calibrated reflectance cube representing the multispectral characteristics of the surveyed area.</p>
 </section>
-<section id="deriving-vegetation-indices">
-<h2>4.3. Deriving vegetation indices<a class="headerlink" href="#deriving-vegetation-indices" title="Link to this heading">#</a></h2>
+<section id="deriving-vegetation-indices-multispectral">
+<h2>4.3. Deriving vegetation indices (Multispectral)<a class="headerlink" href="#deriving-vegetation-indices-multispectral" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -796,20 +597,17 @@ Generally three methods are followed these effects.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_13396\251264815.py:22: RuntimeWarning: invalid value encountered in sqrt
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_29640\251264815.py:22: RuntimeWarning: invalid value encountered in sqrt
   MSAVI2 = 0.5 * (2 * nir.astype(float) + 1 - np.sqrt(2 * nir.astype(float) + 1) * 2 - 8*(nir.astype(float) - red.astype(float)))
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_13396\251264815.py:25: RuntimeWarning: divide by zero encountered in divide
+C:\Users\a1233249\AppData\Local\Temp\ipykernel_29640\251264815.py:25: RuntimeWarning: divide by zero encountered in divide
   ARVI = (nir.astype(float) + blue.astype(float))/(nir.astype(float) - blue.astype(float))
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-</section>
-<section id="visualise-the-plots-on-a-raster">
-<h1>Visualise the plots on a raster<a class="headerlink" href="#visualise-the-plots-on-a-raster" title="Link to this heading">#</a></h1>
+<section id="visualise-the-plots-on-a-raster-multispectral">
+<h2>4.4. Visualise the plots on a raster (Multispectral)<a class="headerlink" href="#visualise-the-plots-on-a-raster-multispectral" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shape</span> <span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;data/ground_truth_shape 1.shp&quot;</span><span class="p">)</span>
@@ -827,8 +625,8 @@ Generally three methods are followed these effects.</p>
 </div>
 </div>
 </section>
-<section id="extracting-ndvi-values-of-individual-plots">
-<h1>Extracting NDVI values of individual plots<a class="headerlink" href="#extracting-ndvi-values-of-individual-plots" title="Link to this heading">#</a></h1>
+<section id="extracting-ndvi-values-of-individual-plots-multispectral">
+<h2>4.5. Extracting NDVI values of individual plots (Multispectral)<a class="headerlink" href="#extracting-ndvi-values-of-individual-plots-multispectral" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rasterstats</span> <span class="k">as</span> <span class="nn">rs</span>
@@ -864,8 +662,9 @@ Generally three methods are followed these effects.</p>
 <p>Remote sensing data infleunced by noise and uncertainty caused by atmoshpehre, solar and viewing geometry, variable illumination by clouds and haze, terrain.</p>
 <p>The atmsopheric effects are computed based on simulated physically based radiation transfer model and the relevant atmsphere condictions. In this atmsophere properties were charecterised using radiave transfer code such as MODTRAN and 6S.</p>
 </section>
+</section>
 <section id="data-processing-pipelines-for-hyperspectral-data-hsi">
-<h1>4. Data processing pipelines for hyperspectral data (HSI)<a class="headerlink" href="#data-processing-pipelines-for-hyperspectral-data-hsi" title="Link to this heading">#</a></h1>
+<h1>5. Data processing pipelines for hyperspectral data (HSI)<a class="headerlink" href="#data-processing-pipelines-for-hyperspectral-data-hsi" title="Link to this heading">#</a></h1>
 <p>Compared to Multispectral data, the pipelines for hyperspectral data is slightly different due to the sensor mechanical design.
 Push-broom design based sensors typically used in hyperspectral scanning which acquires images line-by-line, in which the spatial infromation is displayed along x and y-axis and the wavelength information on z-axis. As the sensor platform move forward, the sensor continuosly captures the data cube in a strip format.</p>
 <section id="importing-raw-data-and-relevant-metdata-information">
@@ -974,8 +773,8 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 </div>
 </div>
 </section>
-<section id="converting-raw-hyperspectral-data-to-radiance-radiometric-correction-calibration">
-<h2>4.1. Converting Raw hyperspectral data to Radiance (Radiometric correction/calibration)<a class="headerlink" href="#converting-raw-hyperspectral-data-to-radiance-radiometric-correction-calibration" title="Link to this heading">#</a></h2>
+<section id="converting-raw-hyperspectral-data-into-radiance-radiometric-correction-calibration">
+<h2>5.1. Converting Raw hyperspectral data into Radiance (Radiometric correction/calibration)<a class="headerlink" href="#converting-raw-hyperspectral-data-into-radiance-radiometric-correction-calibration" title="Link to this heading">#</a></h2>
 <p>The radiometric correction process consists of the conversion of incident photons into light intensity (radiance). This process typically involves collecting dark current (DC) and substracting from the measured DN. and thereafter the values were interpretated with raditiometric coefficients values using the above formula.</p>
 <p>The radiometric coefficients generally supplied by the manfacturers who calibrates an individual sensor in a calibrated integrating sphere (Labshpere, USA) associated with tracebale light source. Althpugh the process is extesive, it is ideal to conduct the clibration every year to verify the functionality of the sensor and ensures right measurements.</p>
 <!-- <img src='images/integrating_sphere.png' width="300" height="200"> -->
@@ -1047,7 +846,7 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 </section>
 </section>
 <section id="converting-radiance-hyperspectral-data-to-reflectance-atmospheric-correction-calibration">
-<h2>4.2. Converting Radiance hyperspectral data to Reflectance (Atmospheric correction/calibration)<a class="headerlink" href="#converting-radiance-hyperspectral-data-to-reflectance-atmospheric-correction-calibration" title="Link to this heading">#</a></h2>
+<h2>5.2. Converting Radiance hyperspectral data to Reflectance (Atmospheric correction/calibration)<a class="headerlink" href="#converting-radiance-hyperspectral-data-to-reflectance-atmospheric-correction-calibration" title="Link to this heading">#</a></h2>
 <p>ELM (Empirical Line Method) offers a straightforward method for rectifying imagery data by establishing an empirical correlation between known ground targets’ reflectance factors and the observed radiance values. During aerial surveys, reference targets with near lambertian properties are commonly employed for empirical line calculations. These targets have their reflectance properties measured using a spectroradiometer.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1171,7 +970,7 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
     <span class="n">ff</span><span class="o">=</span><span class="n">score</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">r1</span><span class="p">[</span><span class="n">j</span><span class="p">,:]</span><span class="o">*</span><span class="n">score</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ff</span><span class="p">)</span>
 <span class="n">output</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-<span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="p">,</span><span class="n">n_bands</span><span class="p">)</span>
+<span class="n">reflectance</span><span class="o">=</span><span class="n">output</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="p">,</span><span class="n">n_bands</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1181,9 +980,9 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
 <span class="n">gs</span> <span class="o">=</span> <span class="n">GridSpec</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">ax0</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
-<span class="n">ax0</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rgb</span><span class="p">(</span><span class="n">output</span><span class="p">))</span>
+<span class="n">ax0</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rgb</span><span class="p">(</span><span class="n">reflectance</span><span class="p">))</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.50</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
-<span class="n">ref_spectra</span><span class="o">=</span><span class="n">extract_spectra</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="n">ref_spectra</span><span class="o">=</span><span class="n">extract_spectra</span><span class="p">(</span><span class="n">reflectance</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span><span class="n">ref_spectra</span><span class="p">)</span>
 <span class="c1"># ax1.set_xticks(ax1.get_xticks()[::25])</span>
 
@@ -1198,6 +997,362 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 </pre></div>
 </div>
 <img alt="_images/21762769eb902e0279ec92170b282baf4c9911cabac69146a41fdd4252c15757.png" src="_images/21762769eb902e0279ec92170b282baf4c9911cabac69146a41fdd4252c15757.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reflectance</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(401, 206, 273)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># wavelengths</span>
+<span class="n">Ref</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">output</span><span class="p">,</span><span class="n">columns</span> <span class="o">=</span><span class="n">wavelengths</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculating-hyperspectral-vegetation-indices">
+<h2>5.3. Calculating Hyperspectral vegetation indices<a class="headerlink" href="#calculating-hyperspectral-vegetation-indices" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#NDVI - Normalized Vegetation Index</span>
+<span class="n">NDVI</span> <span class="o">=</span> <span class="p">(</span><span class="n">Ref</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">130</span><span class="p">]</span> <span class="o">-</span> <span class="n">Ref</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">150</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">Ref</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">130</span><span class="p">]</span> <span class="o">+</span> <span class="n">Ref</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">150</span><span class="p">])</span>
+
+<span class="c1"># Transformed Soil-Adjusted Vegetation Index, reference=&quot;https://doi.org/10.1109/IGARSS.1989.576128&quot;</span>
+<span class="n">sla</span><span class="o">=</span><span class="mf">0.2</span>
+<span class="n">slb</span><span class="o">=</span><span class="mf">0.3</span>
+<span class="n">TSAVI</span> <span class="o">=</span> <span class="n">sla</span> <span class="o">*</span> <span class="p">(</span><span class="n">Ref</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">150</span><span class="p">]</span><span class="o">-</span> <span class="n">sla</span> <span class="o">*</span> <span class="n">Ref</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">130</span><span class="p">]</span> <span class="o">-</span> <span class="n">slb</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">sla</span> <span class="o">*</span> <span class="n">Ref</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">150</span><span class="p">]</span> <span class="o">+</span> <span class="n">Ref</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">130</span><span class="p">]</span> <span class="o">-</span> <span class="n">sla</span> <span class="o">*</span> <span class="n">slb</span><span class="p">)</span>
+
+<span class="c1">#Adjusted Transformed Soil-Adjusted Vegetation Index, reference=&quot;https://doi.org/10.1016/0034-4257(91)90009-U&quot;</span>
+<span class="n">ATSAVI</span> <span class="o">=</span> <span class="n">sla</span> <span class="o">*</span> <span class="p">(</span><span class="n">Ref</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">150</span><span class="p">]</span> <span class="o">-</span> <span class="n">sla</span> <span class="o">*</span> <span class="n">Ref</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">130</span><span class="p">]</span> <span class="o">-</span> <span class="n">slb</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">sla</span> <span class="o">*</span> <span class="n">Ref</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">150</span><span class="p">]</span> <span class="o">+</span> <span class="n">Ref</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">130</span><span class="p">]</span> <span class="o">-</span> <span class="n">sla</span> <span class="o">*</span> <span class="n">slb</span> <span class="o">+</span> <span class="mf">0.08</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">sla</span> <span class="o">**</span> <span class="mf">2.0</span><span class="p">))</span>
+<span class="c1">#CVI - Simple Ratio Vegetation Index</span>
+<span class="c1"># RVI = nir.astype(float)/red.astype(float)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="extracting-biophyscical-and-biochemical-components-using-prosail-model">
+<h2>5.4. Extracting biophyscical and biochemical components using PROSAIL model<a class="headerlink" href="#extracting-biophyscical-and-biochemical-components-using-prosail-model" title="Link to this heading">#</a></h2>
+<p>PROSAIL (PROSPECT + SAIL) is a widely used radiative transfer model that combines the PROSPECT leaf optical properties model with the SAIL (Scattering by Arbitrarily Inclined Leaves) canopy scattering model. It’s used to simulate the reflectance and transmittance of vegetation canopies under various lighting conditions. This model is particularly useful for understanding the interaction of light with vegetation and is commonly applied in remote sensing and agricultural research.</p>
+<p>The PROSAIL model allows users to simulate vegetation reflectance and transmittance spectra over a wide range of wavelengths and under various canopy configurations (e.g., leaf area index, crude protein etc). It requires inputs such as leaf biochemical parameters (chlorophyll content, carotenoids, leaf water content), canopy structural parameters (leaf area index, leaf angle distribution), solar and viewing geometry, and atmospheric conditions.</p>
+<ul class="simple">
+<li><p>Input Parameters: Provide input parameters such as leaf biochemical and structural properties, solar and viewing geometry, and atmospheric conditions.</p></li>
+<li><p>PROSPECT Model: Use the PROSPECT model to calculate the optical properties of individual leaves based on the leaf biochemical parameters.</p></li>
+<li><p>SAIL Model: Use the SAIL model to simulate the radiative transfer within the canopy, taking into account the interactions between the incident light and the vegetation elements (leaves, stems, soil).</p></li>
+<li><p>Integration: Integrate the results from the PROSPECT and SAIL models to compute the canopy-level reflectance and transmittance spectra.</p></li>
+<li><p>Output: Obtain the simulated reflectance and transmittance spectra, which can be compared with observed data or used for various applications such as vegetation monitoring, land cover classification, and biophysical parameter estimation.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">prosail</span>
+
+<span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">pyDOE</span> <span class="kn">import</span> <span class="n">lhs</span>  <span class="c1"># Import the Latin Hypercube Sampling function</span>
+
+<span class="n">nmin</span><span class="p">,</span> <span class="n">nmax</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span>
+<span class="n">cabmin</span><span class="p">,</span> <span class="n">cabmax</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span>
+<span class="n">laimin</span><span class="p">,</span> <span class="n">laimax</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">5</span>
+<span class="n">carmin</span><span class="p">,</span> <span class="n">carmax</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">15</span>
+<span class="n">cbrownmin</span><span class="p">,</span> <span class="n">cbrownmax</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span>
+<span class="n">cwmin</span><span class="p">,</span> <span class="n">cwmax</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.02</span>
+<span class="n">cmmin</span><span class="p">,</span> <span class="n">cmmax</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.02</span>
+<span class="n">ttsmin</span><span class="p">,</span><span class="n">ttsmax</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">70</span>
+<span class="n">ttomin</span><span class="p">,</span><span class="n">ttomax</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">70</span>
+<span class="n">protmin</span><span class="p">,</span> <span class="n">protmax</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.003</span>
+<span class="n">cbcmin</span><span class="p">,</span> <span class="n">cbcmax</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.01</span>
+<span class="n">antmin</span><span class="p">,</span> <span class="n">antmax</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nmin</span><span class="p">,</span> <span class="n">nmax</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">),</span>
+     <span class="s1">&#39;cab&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">cabmin</span><span class="p">,</span> <span class="n">cabmax</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">),</span>
+     <span class="s1">&#39;lai&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">laimin</span><span class="p">,</span> <span class="n">laimax</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+     <span class="s1">&#39;car&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">carmin</span><span class="p">,</span> <span class="n">carmax</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">),</span>
+     <span class="s1">&#39;cbrown&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">cbrownmin</span><span class="p">,</span> <span class="n">cbrownmax</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">),</span>
+     <span class="s1">&#39;cw&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">cwmin</span><span class="p">,</span> <span class="n">cwmax</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">),</span>
+     <span class="s1">&#39;cm&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">cmmin</span><span class="p">,</span> <span class="n">cmmax</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">),</span>
+     <span class="s1">&#39;prot&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">protmin</span><span class="p">,</span> <span class="n">protmax</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">),</span>
+     <span class="s1">&#39;tts&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span> <span class="p">(</span><span class="n">ttsmin</span><span class="p">,</span><span class="n">ttsmax</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+     <span class="s1">&#39;tto&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span> <span class="p">(</span><span class="n">ttomin</span><span class="p">,</span><span class="n">ttomax</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+     <span class="s1">&#39;cbc&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">cbcmin</span><span class="p">,</span> <span class="n">cbcmax</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">),</span>
+     <span class="s1">&#39;ant&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">antmin</span><span class="p">,</span> <span class="n">antmax</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">)}</span>
+<span class="n">num_samples</span> <span class="o">=</span> <span class="mi">5000</span>  <span class="c1"># Number of samples in the Latin hypercube</span>
+
+<span class="c1"># Generate the Latin hypercube samples</span>
+<span class="n">lhs_samples</span> <span class="o">=</span> <span class="n">lhs</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">samples</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
+
+<span class="c1"># Scale the Latin hypercube samples to the given parameter ranges</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">lhs_samples</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">lhs_samples</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Create a DataFrame with the Latin hypercube samples</span>
+<span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">lhs_samples</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mylist</span><span class="o">=</span><span class="p">[]</span>
+<span class="c1"># for i in tqdm(range(num_samples)):</span>
+<span class="k">def</span> <span class="nf">process_sample</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">df3</span><span class="p">):</span>
+<span class="c1">#     x1 = df3.iloc[i,:]</span>
+    <span class="c1"># ... rest of the code that processes the sample ...</span>
+    
+    <span class="n">x1</span><span class="o">=</span><span class="n">df3</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span>
+    <span class="n">rho</span><span class="o">=</span> <span class="n">prosail</span><span class="o">.</span><span class="n">run_prosail</span><span class="p">(</span><span class="n">n</span><span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">],</span><span class="n">alpha</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span><span class="n">cab</span><span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="s1">&#39;cab&#39;</span><span class="p">],</span><span class="n">car</span><span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="s1">&#39;car&#39;</span><span class="p">],</span><span class="n">cbrown</span> <span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="s1">&#39;cbrown&#39;</span><span class="p">]</span> <span class="p">,</span>
+                                        <span class="n">cw</span><span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="s1">&#39;cw&#39;</span><span class="p">],</span><span class="n">cm</span><span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="s1">&#39;cm&#39;</span><span class="p">],</span><span class="n">prot</span><span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="s1">&#39;prot&#39;</span><span class="p">],</span> <span class="n">cbc</span><span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="s1">&#39;cbc&#39;</span><span class="p">],</span>
+                             <span class="n">ant</span><span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="s1">&#39;ant&#39;</span><span class="p">],</span><span class="n">prospect_version</span><span class="o">=</span><span class="s1">&#39;PRO&#39;</span><span class="p">,</span><span class="n">lai</span><span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="s1">&#39;lai&#39;</span><span class="p">],</span> 
+                             <span class="n">lidfa</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">hspot</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tts</span><span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="s1">&#39;tts&#39;</span><span class="p">],</span> <span class="n">tto</span><span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="s1">&#39;tto&#39;</span><span class="p">],</span><span class="n">psi</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                             <span class="n">rsoil0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2101</span><span class="p">),</span> <span class="n">rsoil</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">psoil</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+                            
+    <span class="c1">##################################################################################################################################################	</span>
+    <span class="c1">### USER DEFINED MODEL INPUTS ###</span>
+    <span class="c1">##################################################################################################################################################	</span>
+    <span class="n">spectral</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">leafbio</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">opticalParameters</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># Biochemical inputs #</span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;Cab&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="s1">&#39;cab&#39;</span><span class="p">]</span>  <span class="c1"># Chlorophyll content [ug cm^-2]</span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;Cca&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="s1">&#39;car&#39;</span><span class="p">]</span>  <span class="c1"># Carotenoid content [ug cm^-2]</span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;Cs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="s1">&#39;cbrown&#39;</span><span class="p">]</span><span class="c1"># Fraction of senescent matter [0-1]</span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;Cw&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="s1">&#39;cw&#39;</span><span class="p">]</span>  <span class="c1"># Water column [cm]</span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;Cdm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="s1">&#39;cm&#39;</span><span class="p">]</span>  <span class="c1"># Dry matter content [g cm^-2] # If Cdm = 0 then Cbc and Cp are used instead</span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">]</span>  <span class="c1"># Messophyl structural parameter [1.0-3.5]</span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;fqe&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.4</span>  <span class="c1"># Chl. fluorescence quantum yield combined for both PSI and PSII, default = .025</span>
+                                    <span class="c1"># Chl. fluorescence is not simulated if leafbio.fqe = 0</span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;V2Z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Violaxanthin-Zeaxanthin deepoxidation status [0-1]; 0 ~100# Violaxanthin, 1 ~100# Zeaxanthin</span>
+                                    <span class="c1"># Violaxanthin-Zeaxanthin deepoxidation is not simulated if leafbio.V2Z = -999 </span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;Can&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="s1">&#39;ant&#39;</span><span class="p">]</span>  <span class="c1"># Anthocyanin content [ug cm^-2]; Anthocyanins are not simulated if Can = 0</span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;Cbc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="s1">&#39;cbc&#39;</span><span class="p">]</span>  <span class="c1"># Carbon-based dry matter constituents&#39; content [g.cm-2] #  Simulated only if Cdm = 0</span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;Cp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="s1">&#39;prot&#39;</span><span class="p">]</span>  <span class="c1"># Nitrogen-based dry matter protein content [g.cm-2] # Simulated only if Cdm = 0</span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;lai&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="s1">&#39;lai&#39;</span><span class="p">]</span>
+
+    <span class="n">dfdf</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">leafbio</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">leafbio</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">waves</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="mi">2501</span><span class="p">))</span>
+    <span class="n">bionames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Cab&#39;</span><span class="p">,</span> <span class="s1">&#39;Cca&#39;</span><span class="p">,</span> <span class="s1">&#39;Cs&#39;</span><span class="p">,</span> <span class="s1">&#39;Cw&#39;</span><span class="p">,</span> <span class="s1">&#39;Cdm&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="s1">&#39;fqe&#39;</span><span class="p">,</span> <span class="s1">&#39;V2Z&#39;</span><span class="p">,</span> <span class="s1">&#39;Can&#39;</span><span class="p">,</span> <span class="s1">&#39;Cbc&#39;</span><span class="p">,</span> <span class="s1">&#39;Cp&#39;</span><span class="p">,</span><span class="s1">&#39;lai&#39;</span><span class="p">]</span>
+    <span class="n">bands</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dfdf</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+    <span class="n">bio</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+    <span class="n">dfdf</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">bands</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">dfdf</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="n">waves</span>
+    <span class="n">bio</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">bio</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">bio</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="n">bionames</span>
+    <span class="n">concatenated_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">dfdf</span><span class="p">,</span> <span class="n">bio</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># concatenated_df[&quot;SIF&quot;]=sif_far_red_peak</span>
+<span class="c1">#     mylist.append(concatenated_df)</span>
+    <span class="k">return</span> <span class="n">concatenated_df</span>
+<span class="n">num_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df3</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)(</span><span class="n">delayed</span><span class="p">(</span><span class="n">process_sample</span><span class="p">)(</span><span class="n">i</span><span class="p">,</span> <span class="n">df3</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">num_samples</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:07&lt;00:00, 632.14it/s]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">waves</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="mi">2501</span><span class="p">))</span>
+<span class="n">waves</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">waves</span><span class="p">)</span>
+<span class="n">temp</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">results</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">temp1</span><span class="o">=</span><span class="n">temp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="mi">2101</span><span class="p">]</span>
+<span class="n">temp1</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="n">waves</span>
+<span class="n">temp2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">temp1</span><span class="p">)</span>
+<span class="n">temp2</span><span class="o">=</span><span class="n">temp2</span><span class="o">.</span><span class="n">T</span>
+<span class="n">temp2</span><span class="o">.</span><span class="n">shape</span>
+
+<span class="n">fwhm1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2101</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint32</span><span class="p">)</span>
+<span class="n">fwhm2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">272</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint32</span><span class="p">)</span>
+<span class="n">wavelengths1</span><span class="o">=</span><span class="n">wavelengths</span><span class="p">[</span><span class="mi">1</span><span class="p">:,]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Spectral resampling, also known as spectral band resampling or spectral band adjustment, is a process used in remote sensing and image processing to transform spectral data from one spectral resolution to another resolution. This is often necessary when working with multi-spectral or hyperspectral imagery, where different sensors may have different spectral bands or resolutions. The resampling process involves interpolation or aggregation of spectral values from the original bands to create new bands at the desired spectral resolution. Common interpolation methods include nearest-neighbor, bilinear, cubic convolution, and sinc interpolation. The choice of interpolation method depends on factors such as the nature of the data and the desired accuracy of the resampled result.</p>
+<p>There are two main types of spectral resampling:</p>
+<ul class="simple">
+<li><p>Upsampling: Increasing the spectral resolution of the data by interpolating between existing spectral bands to fill in additional bands. This is typically done to match the spectral resolution of one dataset to another with higher spectral resolution.</p></li>
+<li><p>Downsampling: Decreasing the spectral resolution of the data by aggregating or averaging adjacent bands to reduce the number of bands. This is often done to match the spectral resolution of one dataset to another with lower spectral resolution or to reduce computational complexity.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_bins</span><span class="p">(</span><span class="n">wavs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Given a series of wavelength points, find the edges and widths</span>
+<span class="sd">    of corresponding wavelength bins. &quot;&quot;&quot;</span>
+    <span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">wavs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">widths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">wavs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">edges</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">wavs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">wavs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">wavs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">widths</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">wavs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">wavs</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">edges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">wavs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">wavs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">wavs</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">wavs</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">wavs</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">widths</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">edges</span><span class="p">,</span> <span class="n">widths</span>
+
+
+
+<span class="k">def</span> <span class="nf">spec_resample</span><span class="p">(</span><span class="n">new_wavs</span><span class="p">,</span> <span class="n">spec_wavs</span><span class="p">,</span> <span class="n">spec_fluxes</span><span class="p">,</span> <span class="n">spec_errs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function for resampling spectra onto a new wavelength basis.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">old_wavs</span> <span class="o">=</span> <span class="n">spec_wavs</span>
+    <span class="n">old_fluxes</span> <span class="o">=</span> <span class="n">spec_fluxes</span>
+    <span class="n">old_errs</span> <span class="o">=</span> <span class="n">spec_errs</span>
+
+    <span class="n">old_edges</span><span class="p">,</span> <span class="n">old_widths</span> <span class="o">=</span> <span class="n">make_bins</span><span class="p">(</span><span class="n">old_wavs</span><span class="p">)</span>
+    <span class="n">new_edges</span><span class="p">,</span> <span class="n">new_widths</span> <span class="o">=</span> <span class="n">make_bins</span><span class="p">(</span><span class="n">new_wavs</span><span class="p">)</span>
+
+    <span class="n">new_fluxes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">old_fluxes</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span> <span class="o">+</span> <span class="n">new_wavs</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">old_errs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">old_errs</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">old_fluxes</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;If specified, spec_errs must be the same shape as spec_fluxes.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">new_errs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">new_fluxes</span><span class="p">)</span>
+
+    <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">stop</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">warned</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">new_wavs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">new_edges</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">old_edges</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="ow">or</span> <span class="p">(</span><span class="n">new_edges</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">old_edges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="n">new_fluxes</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">fill</span>
+
+            <span class="k">if</span> <span class="n">spec_errs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">new_errs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">fill</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">j</span> <span class="o">==</span> <span class="n">new_wavs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">verbose</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">warned</span><span class="p">:</span>
+                <span class="n">warned</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Spectres: new_wavs contains values outside the range in spec_wavs, new_fluxes and new_errs will be filled with the value set in the &#39;fill&#39; keyword argument. </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="k">while</span> <span class="n">old_edges</span><span class="p">[</span><span class="n">start</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">new_edges</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+            <span class="n">start</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">while</span> <span class="n">old_edges</span><span class="p">[</span><span class="n">stop</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">new_edges</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">stop</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">stop</span> <span class="o">==</span> <span class="n">start</span><span class="p">:</span>
+            <span class="n">new_fluxes</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">old_fluxes</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">start</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">old_errs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">new_errs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">old_errs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">start</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">start_factor</span> <span class="o">=</span> <span class="p">((</span><span class="n">old_edges</span><span class="p">[</span><span class="n">start</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">new_edges</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">old_edges</span><span class="p">[</span><span class="n">start</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">old_edges</span><span class="p">[</span><span class="n">start</span><span class="p">]))</span>
+            <span class="n">end_factor</span> <span class="o">=</span> <span class="p">((</span><span class="n">new_edges</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">old_edges</span><span class="p">[</span><span class="n">stop</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">old_edges</span><span class="p">[</span><span class="n">stop</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">old_edges</span><span class="p">[</span><span class="n">stop</span><span class="p">]))</span>
+
+            <span class="n">old_widths</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">*=</span> <span class="n">start_factor</span>
+            <span class="n">old_widths</span><span class="p">[</span><span class="n">stop</span><span class="p">]</span> <span class="o">*=</span> <span class="n">end_factor</span>
+
+            <span class="n">f_widths</span> <span class="o">=</span> <span class="n">old_widths</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">old_fluxes</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">new_fluxes</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">f_widths</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">new_fluxes</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">old_widths</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+
+            <span class="k">if</span> <span class="n">old_errs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">e_wid</span> <span class="o">=</span> <span class="n">old_widths</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">old_errs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">new_errs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">e_wid</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+                <span class="n">new_errs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">old_widths</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+
+            <span class="n">old_widths</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">/=</span> <span class="n">start_factor</span>
+            <span class="n">old_widths</span><span class="p">[</span><span class="n">stop</span><span class="p">]</span> <span class="o">/=</span> <span class="n">end_factor</span>
+
+    <span class="k">if</span> <span class="n">old_errs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">new_fluxes</span><span class="p">,</span> <span class="n">new_errs</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">new_fluxes</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">asd</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">5000</span><span class="p">):</span>
+    <span class="n">spec_resample_i</span><span class="p">,</span> <span class="n">spec_errs_resample_i</span> <span class="o">=</span> <span class="n">spec_resample</span><span class="p">(</span><span class="n">wavelengths1</span><span class="p">,</span> <span class="n">waves</span><span class="p">,</span> <span class="n">temp2</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span> <span class="n">fwhm1</span><span class="p">,</span><span class="n">fwhm2</span><span class="p">)</span>
+    <span class="n">asd</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">spec_resample_i</span><span class="p">)</span>
+<span class="n">prosail_ref</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">asd</span><span class="p">)</span>
+<span class="n">prosail_ref1</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">prosail_ref</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">wavelengths1</span><span class="p">)</span>
+<span class="n">prosail_ref1</span><span class="p">[</span><span class="s1">&#39;lai&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">temp</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;lai&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">prosail_ref1</span><span class="p">[</span><span class="s1">&#39;Cab&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">temp</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;Cab&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">prosail_ref1</span><span class="p">[</span><span class="s1">&#39;Cp&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">temp</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;Cp&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="machine-learning-regression">
+<h2>5.5. Machine learning regression<a class="headerlink" href="#machine-learning-regression" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1">#----------------------------------------------------------------------------------------------</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.kernel_ridge</span> <span class="kn">import</span> <span class="n">KernelRidge</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_predict</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+
+<span class="n">X</span><span class="o">=</span><span class="n">prosail_ref1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="mi">272</span><span class="p">]</span>
+<span class="n">lai</span><span class="o">=</span><span class="n">prosail_ref1</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;lai&#39;</span><span class="p">]]</span>
+
+
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;alpha&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e0</span><span class="p">,</span> <span class="mf">1e-1</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">],</span>
+              <span class="s2">&quot;kernel&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">ExpSineSquared</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+                         <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+                         <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)]}</span>
+<span class="c1"># kr = GridSearchCV(KernelRidge(), param_grid=param_grid,n_jobs=-1)</span>
+<span class="n">kr</span> <span class="o">=</span> <span class="n">KernelRidge</span><span class="p">()</span>
+<span class="n">kr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">lai</span><span class="p">)</span>
+<span class="n">lai_layer</span><span class="o">=</span><span class="n">kr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">output</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">273</span><span class="p">])</span>
+<span class="n">lai_layer</span><span class="o">=</span><span class="n">lai_layer</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">lai_layer</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x1d7b95f4170&gt;
+</pre></div>
+</div>
+<img alt="_images/eafec2c28f80ce5d0da07e0d26e16b1dc737410add3a20fb261784fbcb0e6d8a.png" src="_images/eafec2c28f80ce5d0da07e0d26e16b1dc737410add3a20fb261784fbcb0e6d8a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lai_layer</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(401, 206, 1)
+</pre></div>
+</div>
 </div>
 </div>
 </section>
@@ -1269,20 +1424,23 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-management">3. Data management</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-piepleines">4. Data processing piepleines</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-digital-numbers-to-radiance">4.1. Converting Digital numbers to Radiance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiance-to-reflectance">4.2. Radiance to Reflectance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-vegetation-indices">4.3. Deriving vegetation indices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-digital-numbers-to-radiance-multispectral">4.1. Converting Digital numbers to Radiance (Multispectral)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiance-to-reflectance-multispectral">4.2. Radiance to Reflectance (Multispectral)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-vegetation-indices-multispectral">4.3. Deriving vegetation indices (Multispectral)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualise-the-plots-on-a-raster-multispectral">4.4. Visualise the plots on a raster (Multispectral)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-ndvi-values-of-individual-plots-multispectral">4.5. Extracting NDVI values of individual plots (Multispectral)</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualise-the-plots-on-a-raster">Visualise the plots on a raster</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-ndvi-values-of-individual-plots">Extracting NDVI values of individual plots</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-pipelines-for-hyperspectral-data-hsi">4. Data processing pipelines for hyperspectral data (HSI)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-pipelines-for-hyperspectral-data-hsi">5. Data processing pipelines for hyperspectral data (HSI)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-raw-data-and-relevant-metdata-information">Importing raw data and relevant metdata information</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-raw-hyperspectral-data-to-radiance-radiometric-correction-calibration">4.1. Converting Raw hyperspectral data to Radiance (Radiometric correction/calibration)</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-raw-hyperspectral-data-into-radiance-radiometric-correction-calibration">5.1. Converting Raw hyperspectral data into Radiance (Radiometric correction/calibration)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-darkcurrent-of-the-sensor">Reading Darkcurrent of the sensor</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-radiance-hyperspectral-data-to-reflectance-atmospheric-correction-calibration">4.2. Converting Radiance hyperspectral data to Reflectance (Atmospheric correction/calibration)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-radiance-hyperspectral-data-to-reflectance-atmospheric-correction-calibration">5.2. Converting Radiance hyperspectral data to Reflectance (Atmospheric correction/calibration)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-hyperspectral-vegetation-indices">5.3. Calculating Hyperspectral vegetation indices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-biophyscical-and-biochemical-components-using-prosail-model">5.4. Extracting biophyscical and biochemical components using PROSAIL model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-regression">5.5. Machine learning regression</a></li>
 </ul>
 </li>
 </ul>

@@ -1,0 +1,1222 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>&lt;no title&gt; &#8212; Manual for UAV operations in Agriculture</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'prosail_v1';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpeg" class="logo__image only-light" alt="Manual for UAV operations in Agriculture - Home"/>
+    <script>document.write(`<img src="_static/logo.jpeg" class="logo__image only-dark" alt="Manual for UAV operations in Agriculture - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    A manual for UAV operations in Agriculture
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">1. Introduction</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fprosail_v1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/prosail_v1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">prosail</span>
+
+<span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">pyDOE</span> <span class="kn">import</span> <span class="n">lhs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">math</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nmin</span><span class="p">,</span> <span class="n">nmax</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span>
+<span class="n">cabmin</span><span class="p">,</span> <span class="n">cabmax</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span>
+<span class="n">laimin</span><span class="p">,</span> <span class="n">laimax</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">5</span>
+<span class="n">carmin</span><span class="p">,</span> <span class="n">carmax</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">15</span>
+<span class="n">cbrownmin</span><span class="p">,</span> <span class="n">cbrownmax</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span>
+<span class="n">cwmin</span><span class="p">,</span> <span class="n">cwmax</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.02</span>
+<span class="n">cmmin</span><span class="p">,</span> <span class="n">cmmax</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.02</span>
+<span class="n">ttsmin</span><span class="p">,</span><span class="n">ttsmax</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">70</span>
+<span class="n">ttomin</span><span class="p">,</span><span class="n">ttomax</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">70</span>
+<span class="n">protmin</span><span class="p">,</span> <span class="n">protmax</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.003</span>
+<span class="n">cbcmin</span><span class="p">,</span> <span class="n">cbcmax</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.01</span>
+<span class="n">antmin</span><span class="p">,</span> <span class="n">antmax</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nmin</span><span class="p">,</span> <span class="n">nmax</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">),</span>
+     <span class="s1">&#39;cab&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">cabmin</span><span class="p">,</span> <span class="n">cabmax</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">),</span>
+     <span class="s1">&#39;lai&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">laimin</span><span class="p">,</span> <span class="n">laimax</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+     <span class="s1">&#39;car&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">carmin</span><span class="p">,</span> <span class="n">carmax</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">),</span>
+     <span class="s1">&#39;cbrown&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">cbrownmin</span><span class="p">,</span> <span class="n">cbrownmax</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">),</span>
+     <span class="s1">&#39;cw&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">cwmin</span><span class="p">,</span> <span class="n">cwmax</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">),</span>
+     <span class="s1">&#39;cm&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">cmmin</span><span class="p">,</span> <span class="n">cmmax</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">),</span>
+     <span class="s1">&#39;prot&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">protmin</span><span class="p">,</span> <span class="n">protmax</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">),</span>
+     <span class="s1">&#39;tts&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span> <span class="p">(</span><span class="n">ttsmin</span><span class="p">,</span><span class="n">ttsmax</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+     <span class="s1">&#39;tto&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span> <span class="p">(</span><span class="n">ttomin</span><span class="p">,</span><span class="n">ttomax</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+     <span class="s1">&#39;cbc&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">cbcmin</span><span class="p">,</span> <span class="n">cbcmax</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">),</span>
+     <span class="s1">&#39;ant&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">antmin</span><span class="p">,</span> <span class="n">antmax</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">)}</span>
+<span class="n">num_samples</span> <span class="o">=</span> <span class="mi">5000</span>  <span class="c1"># Number of samples in the Latin hypercube</span>
+
+<span class="c1"># Generate the Latin hypercube samples</span>
+<span class="n">lhs_samples</span> <span class="o">=</span> <span class="n">lhs</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">samples</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
+
+<span class="c1"># Scale the Latin hypercube samples to the given parameter ranges</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">lhs_samples</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">lhs_samples</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Create a DataFrame with the Latin hypercube samples</span>
+<span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">lhs_samples</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mylist</span><span class="o">=</span><span class="p">[]</span>
+<span class="c1"># for i in tqdm(range(num_samples)):</span>
+<span class="k">def</span> <span class="nf">process_sample</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">df3</span><span class="p">):</span>
+<span class="c1">#     x1 = df3.iloc[i,:]</span>
+    <span class="c1"># ... rest of the code that processes the sample ...</span>
+    
+    <span class="n">x1</span><span class="o">=</span><span class="n">df3</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span>
+    <span class="n">rho</span><span class="o">=</span> <span class="n">prosail</span><span class="o">.</span><span class="n">run_prosail</span><span class="p">(</span><span class="n">n</span><span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">],</span><span class="n">alpha</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span><span class="n">cab</span><span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="s1">&#39;cab&#39;</span><span class="p">],</span><span class="n">car</span><span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="s1">&#39;car&#39;</span><span class="p">],</span><span class="n">cbrown</span> <span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="s1">&#39;cbrown&#39;</span><span class="p">]</span> <span class="p">,</span>
+                                        <span class="n">cw</span><span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="s1">&#39;cw&#39;</span><span class="p">],</span><span class="n">cm</span><span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="s1">&#39;cm&#39;</span><span class="p">],</span><span class="n">prot</span><span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="s1">&#39;prot&#39;</span><span class="p">],</span> <span class="n">cbc</span><span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="s1">&#39;cbc&#39;</span><span class="p">],</span>
+                             <span class="n">ant</span><span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="s1">&#39;ant&#39;</span><span class="p">],</span><span class="n">prospect_version</span><span class="o">=</span><span class="s1">&#39;PRO&#39;</span><span class="p">,</span><span class="n">lai</span><span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="s1">&#39;lai&#39;</span><span class="p">],</span> 
+                             <span class="n">lidfa</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">hspot</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tts</span><span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="s1">&#39;tts&#39;</span><span class="p">],</span> <span class="n">tto</span><span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="s1">&#39;tto&#39;</span><span class="p">],</span><span class="n">psi</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                             <span class="n">rsoil0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2101</span><span class="p">),</span> <span class="n">rsoil</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">psoil</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+                            
+    <span class="c1">##################################################################################################################################################	</span>
+    <span class="c1">### USER DEFINED MODEL INPUTS ###</span>
+    <span class="c1">##################################################################################################################################################	</span>
+    <span class="n">spectral</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">leafbio</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">opticalParameters</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># Biochemical inputs #</span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;Cab&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="s1">&#39;cab&#39;</span><span class="p">]</span>  <span class="c1"># Chlorophyll content [ug cm^-2]</span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;Cca&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="s1">&#39;car&#39;</span><span class="p">]</span>  <span class="c1"># Carotenoid content [ug cm^-2]</span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;Cs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="s1">&#39;cbrown&#39;</span><span class="p">]</span><span class="c1"># Fraction of senescent matter [0-1]</span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;Cw&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="s1">&#39;cw&#39;</span><span class="p">]</span>  <span class="c1"># Water column [cm]</span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;Cdm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="s1">&#39;cm&#39;</span><span class="p">]</span>  <span class="c1"># Dry matter content [g cm^-2] # If Cdm = 0 then Cbc and Cp are used instead</span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">]</span>  <span class="c1"># Messophyl structural parameter [1.0-3.5]</span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;fqe&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.4</span>  <span class="c1"># Chl. fluorescence quantum yield combined for both PSI and PSII, default = .025</span>
+                                    <span class="c1"># Chl. fluorescence is not simulated if leafbio.fqe = 0</span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;V2Z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Violaxanthin-Zeaxanthin deepoxidation status [0-1]; 0 ~100# Violaxanthin, 1 ~100# Zeaxanthin</span>
+                                    <span class="c1"># Violaxanthin-Zeaxanthin deepoxidation is not simulated if leafbio.V2Z = -999 </span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;Can&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="s1">&#39;ant&#39;</span><span class="p">]</span>  <span class="c1"># Anthocyanin content [ug cm^-2]; Anthocyanins are not simulated if Can = 0</span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;Cbc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="s1">&#39;cbc&#39;</span><span class="p">]</span>  <span class="c1"># Carbon-based dry matter constituents&#39; content [g.cm-2] #  Simulated only if Cdm = 0</span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;Cp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="s1">&#39;prot&#39;</span><span class="p">]</span>  <span class="c1"># Nitrogen-based dry matter protein content [g.cm-2] # Simulated only if Cdm = 0</span>
+    <span class="n">leafbio</span><span class="p">[</span><span class="s1">&#39;lai&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="s1">&#39;lai&#39;</span><span class="p">]</span>
+
+    <span class="n">dfdf</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">leafbio</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">leafbio</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">waves</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="mi">2501</span><span class="p">))</span>
+    <span class="n">bionames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Cab&#39;</span><span class="p">,</span> <span class="s1">&#39;Cca&#39;</span><span class="p">,</span> <span class="s1">&#39;Cs&#39;</span><span class="p">,</span> <span class="s1">&#39;Cw&#39;</span><span class="p">,</span> <span class="s1">&#39;Cdm&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="s1">&#39;fqe&#39;</span><span class="p">,</span> <span class="s1">&#39;V2Z&#39;</span><span class="p">,</span> <span class="s1">&#39;Can&#39;</span><span class="p">,</span> <span class="s1">&#39;Cbc&#39;</span><span class="p">,</span> <span class="s1">&#39;Cp&#39;</span><span class="p">,</span><span class="s1">&#39;lai&#39;</span><span class="p">]</span>
+    <span class="n">bands</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dfdf</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+    <span class="n">bio</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+    <span class="n">dfdf</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">bands</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">dfdf</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="n">waves</span>
+    <span class="n">bio</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">bio</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">bio</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="n">bionames</span>
+    <span class="n">concatenated_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">dfdf</span><span class="p">,</span> <span class="n">bio</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># concatenated_df[&quot;SIF&quot;]=sif_far_red_peak</span>
+<span class="c1">#     mylist.append(concatenated_df)</span>
+    <span class="k">return</span> <span class="n">concatenated_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df3</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)(</span><span class="n">delayed</span><span class="p">(</span><span class="n">process_sample</span><span class="p">)(</span><span class="n">i</span><span class="p">,</span> <span class="n">df3</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">num_samples</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:25&lt;00:00, 197.32it/s]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">results</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp1</span><span class="o">=</span><span class="n">temp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="mi">2101</span><span class="p">]</span>
+<span class="n">temp1</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5000, 2101)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>400</th>
+      <th>401</th>
+      <th>402</th>
+      <th>403</th>
+      <th>404</th>
+      <th>405</th>
+      <th>406</th>
+      <th>407</th>
+      <th>408</th>
+      <th>409</th>
+      <th>...</th>
+      <th>2491</th>
+      <th>2492</th>
+      <th>2493</th>
+      <th>2494</th>
+      <th>2495</th>
+      <th>2496</th>
+      <th>2497</th>
+      <th>2498</th>
+      <th>2499</th>
+      <th>2500</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.050962</td>
+      <td>0.050970</td>
+      <td>0.050979</td>
+      <td>0.050989</td>
+      <td>0.051003</td>
+      <td>0.051019</td>
+      <td>0.050982</td>
+      <td>0.050947</td>
+      <td>0.050921</td>
+      <td>0.050887</td>
+      <td>...</td>
+      <td>0.072073</td>
+      <td>0.072087</td>
+      <td>0.072128</td>
+      <td>0.072261</td>
+      <td>0.072320</td>
+      <td>0.072548</td>
+      <td>0.072435</td>
+      <td>0.072802</td>
+      <td>0.072485</td>
+      <td>0.073030</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>0.080946</td>
+      <td>0.080948</td>
+      <td>0.080950</td>
+      <td>0.080952</td>
+      <td>0.080955</td>
+      <td>0.080960</td>
+      <td>0.080876</td>
+      <td>0.080793</td>
+      <td>0.080722</td>
+      <td>0.080639</td>
+      <td>...</td>
+      <td>0.074211</td>
+      <td>0.074088</td>
+      <td>0.074033</td>
+      <td>0.073989</td>
+      <td>0.073978</td>
+      <td>0.074068</td>
+      <td>0.073910</td>
+      <td>0.074061</td>
+      <td>0.073814</td>
+      <td>0.074063</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>0.086911</td>
+      <td>0.086918</td>
+      <td>0.086925</td>
+      <td>0.086934</td>
+      <td>0.086947</td>
+      <td>0.086963</td>
+      <td>0.086887</td>
+      <td>0.086813</td>
+      <td>0.086754</td>
+      <td>0.086681</td>
+      <td>...</td>
+      <td>0.086058</td>
+      <td>0.085956</td>
+      <td>0.085917</td>
+      <td>0.085920</td>
+      <td>0.085930</td>
+      <td>0.086081</td>
+      <td>0.085925</td>
+      <td>0.086179</td>
+      <td>0.085895</td>
+      <td>0.086297</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>0.072528</td>
+      <td>0.072528</td>
+      <td>0.072528</td>
+      <td>0.072529</td>
+      <td>0.072529</td>
+      <td>0.072530</td>
+      <td>0.072452</td>
+      <td>0.072374</td>
+      <td>0.072307</td>
+      <td>0.072229</td>
+      <td>...</td>
+      <td>0.049262</td>
+      <td>0.049215</td>
+      <td>0.049189</td>
+      <td>0.049160</td>
+      <td>0.049155</td>
+      <td>0.049178</td>
+      <td>0.049135</td>
+      <td>0.049165</td>
+      <td>0.049113</td>
+      <td>0.049162</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>0.078534</td>
+      <td>0.078533</td>
+      <td>0.078533</td>
+      <td>0.078533</td>
+      <td>0.078535</td>
+      <td>0.078539</td>
+      <td>0.078457</td>
+      <td>0.078376</td>
+      <td>0.078307</td>
+      <td>0.078226</td>
+      <td>...</td>
+      <td>0.100756</td>
+      <td>0.100533</td>
+      <td>0.100440</td>
+      <td>0.100360</td>
+      <td>0.100330</td>
+      <td>0.100467</td>
+      <td>0.100164</td>
+      <td>0.100409</td>
+      <td>0.099930</td>
+      <td>0.100345</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>0.083622</td>
+      <td>0.083623</td>
+      <td>0.083623</td>
+      <td>0.083624</td>
+      <td>0.083625</td>
+      <td>0.083627</td>
+      <td>0.083536</td>
+      <td>0.083446</td>
+      <td>0.083369</td>
+      <td>0.083279</td>
+      <td>...</td>
+      <td>0.064880</td>
+      <td>0.064884</td>
+      <td>0.064894</td>
+      <td>0.064949</td>
+      <td>0.064983</td>
+      <td>0.065103</td>
+      <td>0.065068</td>
+      <td>0.065253</td>
+      <td>0.065143</td>
+      <td>0.065412</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>0.082144</td>
+      <td>0.082141</td>
+      <td>0.082139</td>
+      <td>0.082137</td>
+      <td>0.082137</td>
+      <td>0.082138</td>
+      <td>0.082050</td>
+      <td>0.081962</td>
+      <td>0.081887</td>
+      <td>0.081798</td>
+      <td>...</td>
+      <td>0.136844</td>
+      <td>0.136603</td>
+      <td>0.136474</td>
+      <td>0.136278</td>
+      <td>0.136268</td>
+      <td>0.136343</td>
+      <td>0.136108</td>
+      <td>0.136211</td>
+      <td>0.135946</td>
+      <td>0.136133</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>0.075013</td>
+      <td>0.075006</td>
+      <td>0.074999</td>
+      <td>0.074995</td>
+      <td>0.074993</td>
+      <td>0.074993</td>
+      <td>0.074913</td>
+      <td>0.074834</td>
+      <td>0.074766</td>
+      <td>0.074686</td>
+      <td>...</td>
+      <td>0.104239</td>
+      <td>0.103798</td>
+      <td>0.103556</td>
+      <td>0.103174</td>
+      <td>0.103047</td>
+      <td>0.102962</td>
+      <td>0.102579</td>
+      <td>0.102466</td>
+      <td>0.102097</td>
+      <td>0.102016</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>0.067948</td>
+      <td>0.067949</td>
+      <td>0.067950</td>
+      <td>0.067951</td>
+      <td>0.067953</td>
+      <td>0.067956</td>
+      <td>0.067886</td>
+      <td>0.067816</td>
+      <td>0.067756</td>
+      <td>0.067687</td>
+      <td>...</td>
+      <td>0.059667</td>
+      <td>0.059469</td>
+      <td>0.059356</td>
+      <td>0.059186</td>
+      <td>0.059132</td>
+      <td>0.059105</td>
+      <td>0.058949</td>
+      <td>0.058913</td>
+      <td>0.058774</td>
+      <td>0.058758</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>0.068249</td>
+      <td>0.068249</td>
+      <td>0.068249</td>
+      <td>0.068249</td>
+      <td>0.068249</td>
+      <td>0.068249</td>
+      <td>0.068175</td>
+      <td>0.068100</td>
+      <td>0.068036</td>
+      <td>0.067962</td>
+      <td>...</td>
+      <td>0.096991</td>
+      <td>0.097004</td>
+      <td>0.097042</td>
+      <td>0.097204</td>
+      <td>0.097284</td>
+      <td>0.097582</td>
+      <td>0.097465</td>
+      <td>0.097953</td>
+      <td>0.097602</td>
+      <td>0.098333</td>
+    </tr>
+  </tbody>
+</table>
+<p>5000 rows × 2101 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_bins</span><span class="p">(</span><span class="n">wavs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Given a series of wavelength points, find the edges and widths</span>
+<span class="sd">    of corresponding wavelength bins. &quot;&quot;&quot;</span>
+    <span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">wavs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">widths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">wavs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">edges</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">wavs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">wavs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">wavs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">widths</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">wavs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">wavs</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">edges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">wavs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">wavs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">wavs</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">wavs</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">wavs</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">widths</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">edges</span><span class="p">,</span> <span class="n">widths</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">spec_resample</span><span class="p">(</span><span class="n">new_wavs</span><span class="p">,</span> <span class="n">spec_wavs</span><span class="p">,</span> <span class="n">spec_fluxes</span><span class="p">,</span> <span class="n">spec_errs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function for resampling spectra onto a new wavelength basis.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">old_wavs</span> <span class="o">=</span> <span class="n">spec_wavs</span>
+    <span class="n">old_fluxes</span> <span class="o">=</span> <span class="n">spec_fluxes</span>
+    <span class="n">old_errs</span> <span class="o">=</span> <span class="n">spec_errs</span>
+
+    <span class="n">old_edges</span><span class="p">,</span> <span class="n">old_widths</span> <span class="o">=</span> <span class="n">make_bins</span><span class="p">(</span><span class="n">old_wavs</span><span class="p">)</span>
+    <span class="n">new_edges</span><span class="p">,</span> <span class="n">new_widths</span> <span class="o">=</span> <span class="n">make_bins</span><span class="p">(</span><span class="n">new_wavs</span><span class="p">)</span>
+
+    <span class="n">new_fluxes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">old_fluxes</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span> <span class="o">+</span> <span class="n">new_wavs</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">old_errs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">old_errs</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">old_fluxes</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;If specified, spec_errs must be the same shape as spec_fluxes.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">new_errs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">new_fluxes</span><span class="p">)</span>
+
+    <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">stop</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">warned</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">new_wavs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">new_edges</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">old_edges</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="ow">or</span> <span class="p">(</span><span class="n">new_edges</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">old_edges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="n">new_fluxes</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">fill</span>
+
+            <span class="k">if</span> <span class="n">spec_errs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">new_errs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">fill</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">j</span> <span class="o">==</span> <span class="n">new_wavs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">verbose</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">warned</span><span class="p">:</span>
+                <span class="n">warned</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Spectres: new_wavs contains values outside the range in spec_wavs, new_fluxes and new_errs will be filled with the value set in the &#39;fill&#39; keyword argument. </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="k">while</span> <span class="n">old_edges</span><span class="p">[</span><span class="n">start</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">new_edges</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+            <span class="n">start</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">while</span> <span class="n">old_edges</span><span class="p">[</span><span class="n">stop</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">new_edges</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">stop</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">stop</span> <span class="o">==</span> <span class="n">start</span><span class="p">:</span>
+            <span class="n">new_fluxes</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">old_fluxes</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">start</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">old_errs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">new_errs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">old_errs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">start</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">start_factor</span> <span class="o">=</span> <span class="p">((</span><span class="n">old_edges</span><span class="p">[</span><span class="n">start</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">new_edges</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">old_edges</span><span class="p">[</span><span class="n">start</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">old_edges</span><span class="p">[</span><span class="n">start</span><span class="p">]))</span>
+            <span class="n">end_factor</span> <span class="o">=</span> <span class="p">((</span><span class="n">new_edges</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">old_edges</span><span class="p">[</span><span class="n">stop</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">old_edges</span><span class="p">[</span><span class="n">stop</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">old_edges</span><span class="p">[</span><span class="n">stop</span><span class="p">]))</span>
+
+            <span class="n">old_widths</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">*=</span> <span class="n">start_factor</span>
+            <span class="n">old_widths</span><span class="p">[</span><span class="n">stop</span><span class="p">]</span> <span class="o">*=</span> <span class="n">end_factor</span>
+
+            <span class="n">f_widths</span> <span class="o">=</span> <span class="n">old_widths</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">old_fluxes</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">new_fluxes</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">f_widths</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">new_fluxes</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">old_widths</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+
+            <span class="k">if</span> <span class="n">old_errs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">e_wid</span> <span class="o">=</span> <span class="n">old_widths</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">old_errs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">new_errs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">e_wid</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+                <span class="n">new_errs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">old_widths</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+
+            <span class="n">old_widths</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">/=</span> <span class="n">start_factor</span>
+            <span class="n">old_widths</span><span class="p">[</span><span class="n">stop</span><span class="p">]</span> <span class="o">/=</span> <span class="n">end_factor</span>
+
+    <span class="k">if</span> <span class="n">old_errs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">new_fluxes</span><span class="p">,</span> <span class="n">new_errs</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">new_fluxes</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">waves</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="mi">2501</span><span class="p">))</span>
+<span class="n">waves</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">waves</span><span class="p">)</span>
+<span class="n">fwhm1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2101</span><span class="p">)</span>
+<span class="n">fwhm1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">fwhm1</span><span class="p">)</span>
+<span class="n">temp2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">temp1</span><span class="p">)</span>
+<span class="n">temp2</span><span class="o">=</span><span class="n">temp2</span><span class="o">.</span><span class="n">T</span>
+<span class="n">temp3</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">temp1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,:])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.gridspec</span> <span class="kn">import</span> <span class="n">GridSpec</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">exposure</span>
+<span class="kn">import</span> <span class="nn">builtins</span>
+
+
+<span class="c1"># Reading header file</span>
+<span class="k">def</span> <span class="nf">read_header</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c1"># have_nonlowercase_param = False</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">while</span> <span class="n">lines</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;;&#39;</span><span class="p">:</span> <span class="k">continue</span>
+
+            <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">sep</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span><span class="o">.</span><span class="n">islower</span><span class="p">():</span>
+                <span class="n">have_nonlowercase_param</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">support_nonlowercase_params</span><span class="p">:</span>
+                    <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">val</span> <span class="ow">and</span> <span class="n">val</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;{&#39;</span><span class="p">:</span>
+                <span class="nb">str</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">while</span> <span class="nb">str</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;}&#39;</span><span class="p">:</span>
+                    <span class="n">line</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;;&#39;</span><span class="p">:</span> <span class="k">continue</span>
+
+                    <span class="nb">str</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;description&#39;</span><span class="p">:</span>
+                    <span class="nb">dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">vals</span> <span class="o">=</span> <span class="nb">str</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">)):</span>
+                        <span class="n">vals</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                    <span class="nb">dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="k">return</span> <span class="nb">dict</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">EnviHeaderParsingError</span><span class="p">()</span>
+
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.gridspec</span> <span class="kn">import</span> <span class="n">GridSpec</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">exposure</span>
+<span class="kn">import</span> <span class="nn">builtins</span>
+<span class="c1"># Reading raw data</span>
+<span class="n">Radiance_array</span> <span class="o">=</span> <span class="p">(</span><span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;hsi_data/img_radiance.dat&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">Radiance_array</span><span class="o">=</span><span class="n">Radiance_array</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">n_bands</span> <span class="o">=</span> <span class="n">Radiance_array</span><span class="o">.</span><span class="n">shape</span> 
+<span class="c1"># Second axes</span>
+<span class="n">header</span> <span class="o">=</span> <span class="n">read_header</span><span class="p">(</span><span class="s1">&#39;hsi_data/img_radiance.hdr&#39;</span><span class="p">)</span>
+<span class="n">wavelengths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;wavelength&#39;</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fwhm1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2101</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint32</span><span class="p">)</span>
+<span class="n">fwhm2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">272</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint32</span><span class="p">)</span>
+<span class="n">wavelengths1</span><span class="o">=</span><span class="n">wavelengths</span><span class="p">[</span><span class="mi">1</span><span class="p">:,]</span>
+<span class="n">asd</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">5000</span><span class="p">):</span>
+    <span class="n">spec_resample_i</span><span class="p">,</span> <span class="n">spec_errs_resample_i</span> <span class="o">=</span> <span class="n">spec_resample</span><span class="p">(</span><span class="n">wavelengths1</span><span class="p">,</span> <span class="n">waves</span><span class="p">,</span> <span class="n">temp2</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span> <span class="n">fwhm1</span><span class="p">,</span><span class="n">fwhm2</span><span class="p">)</span>
+    <span class="n">asd</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">spec_resample_i</span><span class="p">)</span>
+<span class="n">prosail_ref</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">asd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prosail_ref</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.05097457, 0.05099969, 0.05098495, ..., 0.42454877, 0.42458369,
+        0.42461868],
+       [0.08094867, 0.08095471, 0.08088136, ..., 0.78430901, 0.78484801,
+        0.78544464],
+       [0.08692182, 0.0869444 , 0.08689252, ..., 0.80399823, 0.80434553,
+        0.8047332 ],
+       ...,
+       [0.07500261, 0.07499365, 0.07491854, ..., 0.84324151, 0.84390233,
+        0.84461307],
+       [0.06794928, 0.06795238, 0.06789031, ..., 0.675135  , 0.67571657,
+        0.67634235],
+       [0.06824877, 0.06824891, 0.06817943, ..., 0.66180079, 0.66187783,
+        0.66196361]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bands2</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">443.9</span><span class="p">,</span> <span class="mf">496.6</span><span class="p">,</span><span class="mi">560</span><span class="p">,</span> <span class="mf">664.5</span><span class="p">,</span> <span class="mf">703.9</span><span class="p">,</span><span class="mf">740.2</span><span class="p">,</span> <span class="mf">782.5</span><span class="p">,</span><span class="mf">835.1</span><span class="p">,</span><span class="mf">864.8</span><span class="p">,</span><span class="mi">945</span><span class="p">,</span> <span class="mf">1613.7</span><span class="p">,</span> <span class="mf">2202.4</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint32</span><span class="p">)</span>
+<span class="n">fwhm2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">60</span><span class="p">,</span><span class="mi">66</span><span class="p">,</span><span class="mi">36</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span><span class="mi">106</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">91</span><span class="p">,</span><span class="mi">175</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">31</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint32</span><span class="p">)</span>
+<span class="n">asd</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">5000</span><span class="p">):</span>
+    <span class="n">spec_resample_i</span><span class="p">,</span> <span class="n">spec_errs_resample_i</span> <span class="o">=</span> <span class="n">spec_resample</span><span class="p">(</span><span class="n">bands2</span><span class="p">,</span> <span class="n">waves</span><span class="p">,</span> <span class="n">temp2</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span> <span class="n">fwhm1</span><span class="p">,</span> <span class="n">fwhm2</span><span class="p">)</span>
+    <span class="n">asd</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">spec_resample_i</span><span class="p">)</span>
+    <span class="c1"># asd=spec_resample.append</span>
+<span class="c1"># e_spectra=spec_resample</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">asd1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">asd</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s1">&#39;s2.csv&#39;</span><span class="p">,</span> <span class="n">asd1</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">fwhm2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">60</span><span class="p">,</span><span class="mi">66</span><span class="p">,</span><span class="mi">36</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span><span class="mi">106</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">91</span><span class="p">,</span><span class="mi">175</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">31</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint32</span><span class="p">)</span>
+<span class="n">fwhm2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 60,  66,  36,  31, 106,  15,  15,  20,  21,  91, 175,  21,  20,
+        31], dtype=uint32)
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pullanagari Reddy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
