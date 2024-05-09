@@ -18,18 +18,21 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import pandas as pd
-meta_data = pd.read_excel('data/Meta_data.xlsx') 
-display(meta_data)
+import rasterstats as rs
+affine=image_array.transform
+stats = gpd.GeoDataFrame(rs.zonal_stats(shape, NDVI, affine=affine,stats=["mean"]))
+gdf = shape.join(stats)
+print(gdf.head())
+
 ------------------
 
 
 [1;31m---------------------------------------------------------------------------[0m
 [1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [1;32mIn[1], line 1[0m
-[1;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01mpandas[39;00m [38;5;28;01mas[39;00m [38;5;21;01mpd[39;00m
-[0;32m      2[0m meta_data [38;5;241m=[39m pd[38;5;241m.[39mread_excel([38;5;124m'[39m[38;5;124mdata/Meta_data.xlsx[39m[38;5;124m'[39m) 
-[0;32m      3[0m display(meta_data)
+Cell [1;32mIn[5], line 1[0m
+[1;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01mrasterstats[39;00m [38;5;28;01mas[39;00m [38;5;21;01mrs[39;00m
+[0;32m      2[0m affine[38;5;241m=[39mimage_array[38;5;241m.[39mtransform
+[0;32m      3[0m stats [38;5;241m=[39m gpd[38;5;241m.[39mGeoDataFrame(rs[38;5;241m.[39mzonal_stats(shape, NDVI, affine[38;5;241m=[39maffine,stats[38;5;241m=[39m[[38;5;124m"[39m[38;5;124mmean[39m[38;5;124m"[39m]))
 
-[1;31mModuleNotFoundError[0m: No module named 'pandas'
+[1;31mModuleNotFoundError[0m: No module named 'rasterstats'
 

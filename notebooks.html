@@ -403,7 +403,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-radiance-hyperspectral-data-to-reflectance-atmospheric-correction-calibration">5.2. Converting Radiance hyperspectral data to Reflectance (Atmospheric correction/calibration)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-hyperspectral-vegetation-indices">5.3. Calculating Hyperspectral vegetation indices</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-biophyscical-and-biochemical-components-using-prosail-model">5.4. Extracting biophyscical and biochemical components using PROSAIL model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-regression">5.5. Machine learning regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-regression">5.5. Machine learning regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lai-layer">LAI layer</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -483,6 +486,8 @@ Although many of of UAV flights can withstand 35-50 km/hr winds, flying over 20k
 </section>
 <section id="data-processing-piepleines">
 <h1>4. Data processing piepleines<a class="headerlink" href="#data-processing-piepleines" title="Link to this heading">#</a></h1>
+<p>Data processing of UAV data involves several steps to extract meaningful information from the raw data collected by sensors. The processing workflow is explained in below workflow.
+<img alt="_images/workflow.png" src="_images/workflow.png" /></p>
 <p>The radiometric response of optical sensors/ remote sensing imagery play critical role in obtaining quantitative spectral infromation. Typically, the data from the spectral sensors can be delivered as digital numbers, radiance, and reflectance.</p>
 <ul class="simple">
 <li><p>Digital numbers(DN) The amount of reflected light energy measured by the sensor recorded in the form of a binary integers which is not considered as qunatitative value thus not scientifc value. The range of binary integers depend on the radiometric resolution of the sensor. For example A sensor with 8 bits (rediometric resolution) records the data from 0 to 255, while 16 bits sensor records values from 0 to 65536.
@@ -498,17 +503,217 @@ Radiometric resolution indciates the sensor sensitivity to detect minor energy d
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">meta_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data/Meta_data.xlsx&#39;</span><span class="p">)</span> 
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">display</span><span class="p">(</span><span class="n">meta_data</span><span class="p">)</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
-</pre></div>
-</div>
-</div>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Categories</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>General meta information</td>
+      <td>•        Name</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NaN</td>
+      <td>•        Data collection date</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>•        Location</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NaN</td>
+      <td>•        Surveyor name</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NaN</td>
+      <td>•        Data link</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>NaN</td>
+      <td>•        Brief summary from the field logbook</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>NaN</td>
+      <td>•        Survey Begin Time</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>NaN</td>
+      <td>•        Survey End time</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>NaN</td>
+      <td>•        Platform</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>NaN</td>
+      <td>•        Sensor</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>NaN</td>
+      <td>•        Sensor scanning principle.</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>NaN</td>
+      <td>•        Senor FOV (field of view)</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>NaN</td>
+      <td>•        Sensor IFOV (Instantaneous field of v...</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>NaN</td>
+      <td>•        Sensor radiometric calibration date</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>NaN</td>
+      <td>•        GPS/IMU type</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>NaN</td>
+      <td>•        GPS Ground control points (GCP)</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>NaN</td>
+      <td>•        Downwelling solar radiation available</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>NaN</td>
+      <td>•        Overall heading</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>NaN</td>
+      <td>•        Solar zenith during acquisition</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>NaN</td>
+      <td>•        Solar azimuth during acquisition</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>NaN</td>
+      <td>•        Cloud cover percentage</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>NaN</td>
+      <td>•        Number of rows in the survey</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>NaN</td>
+      <td>•        Data format</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Image meta information</td>
+      <td>•        Spatial resolution</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>NaN</td>
+      <td>•        Spectral resolution</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>NaN</td>
+      <td>•        Spectral range</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>NaN</td>
+      <td>•        Radiometric resolution</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>NaN</td>
+      <td>•        FWHM</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>NaN</td>
+      <td>•        Coordinates (ref/projected)</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>NaN</td>
+      <td>•        Image quality</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>NaN</td>
+      <td>•        Terrain condition</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>NaN</td>
+      <td>•        Solar and viewing geometry</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>Processing meta Information</td>
+      <td>•        Processing level*</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>NaN</td>
+      <td>•        Geometric correction type (algorithm)</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>NaN</td>
+      <td>•        Aerosol Optical Depth Parameters</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>NaN</td>
+      <td>•        Atmosphere correction type (Empirical...</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>NaN</td>
+      <td>•        BRDF type</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <section id="converting-digital-numbers-to-radiance-multispectral">
 <h2>4.1. Converting Digital numbers to Radiance (Multispectral)<a class="headerlink" href="#converting-digital-numbers-to-radiance-multispectral" title="Link to this heading">#</a></h2>
@@ -597,9 +802,11 @@ Generally three methods are followed these effects.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_29640\251264815.py:22: RuntimeWarning: invalid value encountered in sqrt
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_27268\251264815.py:22: RuntimeWarning: invalid value encountered in sqrt
   MSAVI2 = 0.5 * (2 * nir.astype(float) + 1 - np.sqrt(2 * nir.astype(float) + 1) * 2 - 8*(nir.astype(float) - red.astype(float)))
-C:\Users\a1233249\AppData\Local\Temp\ipykernel_29640\251264815.py:25: RuntimeWarning: divide by zero encountered in divide
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\AppData\Local\Temp\ipykernel_27268\251264815.py:25: RuntimeWarning: divide by zero encountered in divide
   ARVI = (nir.astype(float) + blue.astype(float))/(nir.astype(float) - blue.astype(float))
 </pre></div>
 </div>
@@ -621,7 +828,7 @@ C:\Users\a1233249\AppData\Local\Temp\ipykernel_29640\251264815.py:25: RuntimeWar
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="_images/313d417c2b6a2682c546c116adfd9f858a9e4a398f729fb62380386d87160fa6.png" src="_images/313d417c2b6a2682c546c116adfd9f858a9e4a398f729fb62380386d87160fa6.png" />
+<img alt="_images/170d4a742168e4d7f57a85bfd05b057a9c79bd89103c3e38ecc31c1f740bdfbc.png" src="_images/170d4a742168e4d7f57a85bfd05b057a9c79bd89103c3e38ecc31c1f740bdfbc.png" />
 </div>
 </div>
 </section>
@@ -638,23 +845,14 @@ C:\Users\a1233249\AppData\Local\Temp\ipykernel_29640\251264815.py:25: RuntimeWar
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Shape_Leng  Shape_Area  Field  \
-0   22.288812   12.436359    1.0   
-1    0.000000    0.000000    2.0   
-2    0.000000    0.000000    3.0   
-3    0.000000    0.000000    4.0   
-4    0.000000    0.000000    5.0   
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">rasterstats</span> <span class="k">as</span> <span class="nn">rs</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">affine</span><span class="o">=</span><span class="n">image_array</span><span class="o">.</span><span class="n">transform</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">stats</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">zonal_stats</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">NDVI</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="n">affine</span><span class="p">,</span><span class="n">stats</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">]))</span>
 
-                                            geometry      mean  
-0  POLYGON Z ((433053.691 6378464.678 0.000, 4330...  0.207306  
-1  POLYGON Z ((433055.474 6378464.640 0.000, 4330...  0.200503  
-2  POLYGON Z ((433057.683 6378464.407 0.000, 4330...  0.226787  
-3  POLYGON Z ((433059.505 6378463.903 0.000, 4330...  0.206959  
-4  POLYGON Z ((433061.641 6378463.751 0.000, 4330...  0.213492  
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\a1233249\.conda\envs\book\Lib\site-packages\rasterstats\io.py:328: NodataWarning: Setting nodata to -999; specify nodata explicitly
-  warnings.warn(
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;rasterstats&#39;
 </pre></div>
 </div>
 </div>
@@ -776,7 +974,8 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 <section id="converting-raw-hyperspectral-data-into-radiance-radiometric-correction-calibration">
 <h2>5.1. Converting Raw hyperspectral data into Radiance (Radiometric correction/calibration)<a class="headerlink" href="#converting-raw-hyperspectral-data-into-radiance-radiometric-correction-calibration" title="Link to this heading">#</a></h2>
 <p>The radiometric correction process consists of the conversion of incident photons into light intensity (radiance). This process typically involves collecting dark current (DC) and substracting from the measured DN. and thereafter the values were interpretated with raditiometric coefficients values using the above formula.</p>
-<p>The radiometric coefficients generally supplied by the manfacturers who calibrates an individual sensor in a calibrated integrating sphere (Labshpere, USA) associated with tracebale light source. Althpugh the process is extesive, it is ideal to conduct the clibration every year to verify the functionality of the sensor and ensures right measurements.</p>
+<p>The radiometric coefficients generally supplied by the manfacturers who calibrates an individual sensor in a calibrated integrating sphere (Labshpere, USA) associated with tracebale light source. Althpugh the process is extesive, it is ideal to conduct the calibration every year to verify the functionality of the sensor and ensures right measurements.
+The calibration setup should use multiple tungsten halogen lamps to ensure hogenous illumination in the sphere. The clibration activity should exposed to multiple illumination settings/levels to cover different illumination condictions and targets.</p>
 <!-- <img src='images/integrating_sphere.png' width="300" height="200"> -->
 <!-- HTML('<img src="images/integrating_sphere.png" width="400"/>')-->
 <!-- <img src="../images/integrating_sphere.png" alt="fishy" class="bg-primary" width="200px"> -->
@@ -999,32 +1198,16 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 <img alt="_images/21762769eb902e0279ec92170b282baf4c9911cabac69146a41fdd4252c15757.png" src="_images/21762769eb902e0279ec92170b282baf4c9911cabac69146a41fdd4252c15757.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reflectance</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(401, 206, 273)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># wavelengths</span>
-<span class="n">Ref</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">output</span><span class="p">,</span><span class="n">columns</span> <span class="o">=</span><span class="n">wavelengths</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 <section id="calculating-hyperspectral-vegetation-indices">
 <h2>5.3. Calculating Hyperspectral vegetation indices<a class="headerlink" href="#calculating-hyperspectral-vegetation-indices" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#NDVI - Normalized Vegetation Index</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># wavelengths</span>
+<span class="n">Ref</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">output</span><span class="p">,</span><span class="n">columns</span> <span class="o">=</span><span class="n">wavelengths</span><span class="p">)</span>
+
+
+<span class="c1">#NDVI - Normalized Vegetation Index</span>
 <span class="n">NDVI</span> <span class="o">=</span> <span class="p">(</span><span class="n">Ref</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">130</span><span class="p">]</span> <span class="o">-</span> <span class="n">Ref</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">150</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">Ref</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">130</span><span class="p">]</span> <span class="o">+</span> <span class="n">Ref</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">150</span><span class="p">])</span>
 
 <span class="c1"># Transformed Soil-Adjusted Vegetation Index, reference=&quot;https://doi.org/10.1109/IGARSS.1989.576128&quot;</span>
@@ -1329,6 +1512,8 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 </div>
 </div>
 </div>
+<section id="lai-layer">
+<h3>LAI layer<a class="headerlink" href="#lai-layer" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">lai_layer</span><span class="p">)</span>
@@ -1343,18 +1528,7 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 <img alt="_images/eafec2c28f80ce5d0da07e0d26e16b1dc737410add3a20fb261784fbcb0e6d8a.png" src="_images/eafec2c28f80ce5d0da07e0d26e16b1dc737410add3a20fb261784fbcb0e6d8a.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lai_layer</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(401, 206, 1)
-</pre></div>
-</div>
-</div>
-</div>
+</section>
 </section>
 </section>
 
@@ -1440,7 +1614,10 @@ Push-broom design based sensors typically used in hyperspectral scanning which a
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-radiance-hyperspectral-data-to-reflectance-atmospheric-correction-calibration">5.2. Converting Radiance hyperspectral data to Reflectance (Atmospheric correction/calibration)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-hyperspectral-vegetation-indices">5.3. Calculating Hyperspectral vegetation indices</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-biophyscical-and-biochemical-components-using-prosail-model">5.4. Extracting biophyscical and biochemical components using PROSAIL model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-regression">5.5. Machine learning regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-regression">5.5. Machine learning regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lai-layer">LAI layer</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
